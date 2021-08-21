@@ -5,10 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <h1>Meals</h1>
-                {{-- <div class="card-header">{{ __('Dashboard') }}</div> --}}
+                    <h1>VIP Form</h1>
+                    {{ $user->name }}
+                    {{-- <div class="card-header">{{ __('Dashboard') }}</div> --}}
 
-                {{-- <div class="card-body">
+                    {{-- <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
