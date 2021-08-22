@@ -16,22 +16,45 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return redirect("/home");
 });
-// Route::post("/vipform", function () {
-//     return view("vipform");
-// })->name('vipform');
-
-
-// Route::post("/chefform", function () {
-//     return view("chefform");
-// })->name('chefform');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
-Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
+
+//? All Routes for admin
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', function () {
+        dd("you are an admins");
+    });
+});
+
+//? All Routes for chef
+Route::middleware(['auth', 'chef'])->group(function () {
+    Route::get('/chef', function () {
+        dd("you are an chef");
+    });
+});
+
+//? All Routes for VIP
+Route::middleware(['auth', 'VIP'])->group(function () {
+    Route::get('/vip', function () {
+        dd("you are a VIP member");
+    });
+});
+
+//? All Routes for Normal authenticated users
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user', function () {
+        dd("you are an user");
+    });
+
+    Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
+    Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
+});
+
 
 //TODO: 1- create user controller and move all functionalities there
-//TODO: 2- create a middler ware for diffrent type of users (checf, admin, normal)
-//TODO: 3- make a user VIP -> payment method is fictional 
-//TODO: 4- make a user chef -> form that takes pdf, name, years of expirence  
+// DONE: 2- create a middler ware for diffrent type of users (chef, admin, normal, VIP)
+//TODO: 3- make a user VIP form -> payment method is fictional 
+//TODO: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
+//TODO: 5- create om el Database with it's relations 

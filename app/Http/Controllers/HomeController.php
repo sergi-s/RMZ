@@ -31,10 +31,18 @@ class HomeController extends Controller
     }
     public function vipform()
     {
-        return view("vipform", ['user' => Auth::user()]);
+        $user = Auth::user();
+        if ($user->isVIP) {
+            return redirect(route('home'));
+        }
+        return view("vipform", ['user' => $user]);
     }
     public function chefform()
     {
-        return view("chefform", ['user' => Auth::user()]);
+        $user = Auth::user();
+        if ($user->isChef) {
+            return redirect(route('home'));
+        }
+        return view("chefform", ['user' => $user]);
     }
 }
