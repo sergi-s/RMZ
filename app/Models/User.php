@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function chef()
+    {
+        //? $phone = User::find(1)->chef; to get the profile data 
+        return $this->HasOne(ChefProfile::class);
+    }
 }

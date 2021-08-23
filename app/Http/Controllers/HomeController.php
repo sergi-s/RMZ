@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,11 +15,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application Home page.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -42,6 +43,10 @@ class HomeController extends Controller
         $user = Auth::user();
         if ($user->isChef) {
             return redirect(route('home'));
+        }
+        $count = DB::table('chef_profiles')->where('user_id', '=', $user->id)->count();
+        if ($count > 0) {
+            dd("wait for your application to be approved");
         }
         return view("chefform", ['user' => $user]);
     }

@@ -67,22 +67,22 @@
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
                                     @if (!Auth::user()->isVIP)
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
 
                                         <a class="dropdown-item" href="{{ route('vipform') }}"
                                             onclick="event.preventDefault();document.getElementById('vip-form').submit();">
                                             {{ __('Become VIP') }}
                                         </a>
-                                    @endif
-
-                                    @if (!Auth::user()->isChef)
                                         <form id="vip-form" action="{{ route('vipform') }}" method="get" class="d-none">
                                             @csrf
                                         </form>
+                                    @endif
+
+                                    @if (!Auth::user()->isChef)
 
                                         <a class="dropdown-item" href="{{ route('chefform') }}"
                                             onclick="event.preventDefault();document.getElementById('chef-form').submit();">

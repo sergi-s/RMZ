@@ -50,11 +50,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
+    Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
 });
 
 
-//TODO: 1- create user controller and move all functionalities there
-// DONE: 2- create a middler ware for diffrent type of users (chef, admin, normal, VIP)
+//DONE: 1- create user controller and move all functionalities there
+//DONE: 2- create a middler ware for diffrent type of users (chef, admin, normal, VIP)
+//TODO: 5- create om el Database with it's relations 
+//TODO: 5.1-    chef profile
+//TODO: 5.2-    items 
+//TODO: 5.3-    subscribtions
+//TODO: 5.4-    orders
+//TODO: 5.5-    categories
 //TODO: 3- make a user VIP form -> payment method is fictional 
 //TODO: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
-//TODO: 5- create om el Database with it's relations 
