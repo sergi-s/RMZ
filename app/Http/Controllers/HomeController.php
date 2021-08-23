@@ -36,6 +36,9 @@ class HomeController extends Controller
         if ($user->isVIP) {
             return redirect(route('home'));
         }
+        if ($user->isVIP) {
+            return redirect(route('home'));
+        }
         return view("vipform", ['user' => $user]);
     }
     public function chefform()

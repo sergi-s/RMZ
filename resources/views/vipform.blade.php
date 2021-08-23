@@ -18,6 +18,9 @@
 
                     {{ __('You are logged in!') }}
                 </div> --}}
+                    <form action="/vipmember" method="get">
+                        <button type="submit">proceed with payment</button>
+                    </form>
                 </div>
             </div>
         </div>

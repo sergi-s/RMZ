@@ -56,4 +56,11 @@ class UserController extends Controller
         $chef->isVIP = True;
         $chef->save();
     }
+    public function vipmember()
+    {
+        $user  = User::find(Auth::user()->id);
+        $user->isVIP = True;
+        $user->save();
+        return redirect("home");
+    }
 }

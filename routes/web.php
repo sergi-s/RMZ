@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
         dd("you are an user");
     });
 
+    Route::get('/vipmember', [App\Http\Controllers\UserController::class, 'vipmember'])->name('vipmember');
     Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
     Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
