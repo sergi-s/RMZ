@@ -14,6 +14,7 @@ class CreateChefProfilesTable extends Migration
     public function up()
     {
         Schema::create('chef_profiles', function (Blueprint $table) {
+            $table->increments("id");
             $table->unsignedBigInteger('user_id')->unique();
             $table->integer("years_of_xp");
             $table->string("license");

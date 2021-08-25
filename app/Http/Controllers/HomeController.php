@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\ChefProfile;
+use App\Models\User;
+use App\Models\Meal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,10 +29,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        //TODO 1 get all meals
-
-        // dd($request->user());
-        return view('home');
+        return view('home', ['meals' => Meal::all()]);
     }
     public function vipform()
     {

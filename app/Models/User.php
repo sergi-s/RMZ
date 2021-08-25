@@ -47,4 +47,9 @@ class User extends Authenticatable
         //? $phone = User::find(1)->chef; to get the profile data 
         return $this->HasOne(ChefProfile::class);
     }
+    public function getMeals()
+    {
+        // return $this->hasMany(Meal::class);
+        return $this->hasMany('App\Models\Meal', "chef_id", "id");
+    }
 }
