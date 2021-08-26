@@ -26,6 +26,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', function () {
         dd("you are an admins");
     });
+    // approveChef
+    Route::get('approveChef/{id}', [App\Http\Controllers\UserController::class, 'approveChef']);
 });
 
 //? All Routes for chef
@@ -48,11 +50,13 @@ Route::middleware(['auth'])->group(function () {
         dd("you are an user");
     });
 
+    Route::get('/chefs', [App\Http\Controllers\HomeController::class, 'chefs'])->name('chefs');
     Route::get('/vipmember', [App\Http\Controllers\UserController::class, 'vipmember'])->name('vipmember');
     Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
     Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
     Route::get("/meals", [App\Http\Controllers\MealsController::class, 'getAllmeals']);
+    Route::get("/subscribe/{id}", [App\Http\Controllers\UserController::class, 'subscribe']);
 });
 
 
@@ -61,9 +65,10 @@ Route::middleware(['auth'])->group(function () {
 //TODO: 5- create om el Database with it's relations 
 //DONE: 5.1-    chef profile
 //DONE: 5.2-    meals
-//TODO: 5.3-    subscribtions
+//DONE: 5.3-    subscribtions
 //TODO: 5.4-    orders
 //DONE: 5.5-    categories
+//TODO: 5.6-    comments
 //DONE: 3- make a user VIP form -> payment method is fictional 
 //DONE: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
 //TODO: 6- make an admin control panel  

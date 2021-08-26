@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChefProfile;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class UserController extends Controller
@@ -17,6 +19,32 @@ class UserController extends Controller
     public function index(Request $request)
     {
     }
+    public function subscribe($id)
+    {
+        if ($id == Auth::user()->id) {
+            return "cant sub to urself";
+        }
+        if (!User::findOrFail($id)->chef) {
+            return "failed";
+        }
+        $isApproved = DB::table('chef_profiles')->where("user_id", $id)->value("approved");
+
+        if ($isApproved) {
+            //TODO fix if subscribed already or not
+            // $isrepeated = DB::table('subscriptions')->where("user_id", Auth::user()->id)->where("chef_id", $id)->value('id');
+            // dd($isrepeated);
+            // // $temp = DB::table('Subscription')->where("user_id", "=", Auth::user()->id)->where("chef_id", "=", $id);
+            // $temp = DB::table('Subscription')
+            //     ->whereRaw('user_id = ? and chef_id = ?', [Auth::user()->id, $id])
+            //     ->get();
+            // dd($temp);
+            $sub = new Subscription(["chef_id" => $id, "user_id" => Auth::user()->id]);
+            $sub->save();
+            return "you subscribed to" . User::find($id)->name;
+        }
+
+        return "error";
+    }
     public function applyForChef(Request $request)
     {
         $request->validate([
@@ -25,6 +53,7 @@ class UserController extends Controller
 
         $user  = User::find(Auth::user()->id);
         $chef = new ChefProfile;
+        $chef->id = Auth::user()->id;
 
         $chef->years_of_xp = $request->input('years_of_xp');
 
@@ -48,6 +77,7 @@ class UserController extends Controller
         $chef = ChefProfile::find($id);
         $chef->approved = True;
         $chef->save();
+        return "User Approved";
     }
 
     public function vipChef($id)

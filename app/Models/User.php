@@ -49,7 +49,10 @@ class User extends Authenticatable
     }
     public function getMeals()
     {
-        // return $this->hasMany(Meal::class);
         return $this->hasMany('App\Models\Meal', "chef_id", "id");
+    }
+    public function subscription()
+    {
+        return $this->hasMany('App\Models\Subscription');
     }
 }

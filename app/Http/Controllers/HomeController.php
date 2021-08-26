@@ -29,7 +29,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home', ['meals' => Meal::all()]);
+        return view('home', [
+            'meals' => Meal::all(),
+            "chefs" => User::has('chef')->get(),
+            "sub_chefs" => Auth::user()->subscription
+        ]);
+    }
+    public function chefs()
+    {
+        $user = Auth::user()->subscription;
+        return $user;
+        // "chefs" => User::has('chef')->get(),
+        // return $users = User::doesnthave('chef')->get();
     }
     public function vipform()
     {
