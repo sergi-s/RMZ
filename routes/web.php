@@ -17,9 +17,12 @@ Route::get('/', function () {
     return redirect("/home");
 });
 
+Route::get("/meals", [App\Http\Controllers\MealsController::class, 'getAllmeals']);
+Route::get("/meal/{id}", [App\Http\Controllers\MealsController::class, 'getmeal']);
+Route::get('/chefs', [App\Http\Controllers\GuestController::class, 'chefs'])->name('chefs');
+Route::get('/chef/{id}', [App\Http\Controllers\GuestController::class, 'chef'])->name('chef');
+Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->name('home');
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //? All Routes for admin
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -50,12 +53,11 @@ Route::middleware(['auth'])->group(function () {
         dd("you are an user");
     });
 
-    Route::get('/chefs', [App\Http\Controllers\HomeController::class, 'chefs'])->name('chefs');
+    Route::get('/subscriptions', [App\Http\Controllers\HomeController::class, 'sub_chefs'])->name('sub_chefs');
     Route::get('/vipmember', [App\Http\Controllers\UserController::class, 'vipmember'])->name('vipmember');
     Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
     Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
-    Route::get("/meals", [App\Http\Controllers\MealsController::class, 'getAllmeals']);
     Route::get("/subscribe/{id}", [App\Http\Controllers\UserController::class, 'subscribe']);
 });
 

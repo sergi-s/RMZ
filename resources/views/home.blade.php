@@ -5,29 +5,74 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Meals') }}</div>
+                    <div class="card">
+                        <div class="card-header">Meals</div>
+                        @forelse ($meals as $meal)
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <th>Name:</th>
+                                        <td>{{ $meal->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Chef Name:</th>
+                                        <td><a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Category:</th>
+                                        <td>{{ $meal->category->name }}</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <th>Price:</th>
+                                        <td>{{ $meal->price }}</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <th>Description:</th>
+                                        <td>{{ $meal->description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Visit:</th>
+                                        <td><a href="/meal/{{ $meal->id }}">Click Here</a></td>
+                                    </tr>
 
-                    @foreach ($meals as $meal)
+                                </table>
+                            </div>
+
+                        @empty
+                            No Meals Avilable
+                        @endforelse
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">{{ __('Chefs') }}</div>
+                    @foreach ($chefs as $chef)
                         <div class="card-body">
-                            {{ $meal->price }}
-                            {{ $meal->description }}
-                            {{ $meal->chef->name }}
-                            {{ $meal->category->name }}
+                            <a href="chef/{{ $chef->id }}">{{ $chef->name }}</a><br>
+                            yeas of experience: {{ $chef->chef->years_of_xp }} <br>
+                            @if ($chef->chef->isVIP)
+                                VIP
+                            @endif<br>
                         </div>
                     @endforeach
-                    {{-- <div class="card-header">{{ __('Dashboard') }}</div> --}}
-
-                    {{-- <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div> --}}
                 </div>
             </div>
+            @if (Auth::check())
+                <div class="card">
+                    <div class="card-header">{{ __('Subscriptions') }}</div>
+                    @foreach ($sub_chefs as $chef)
+                        <div class="card-body">
+                            <a href="chef/{{ $chef->id }}">{{ $chef->name }}</a><br>
+                            yeas of experience: {{ $chef->chef->years_of_xp }} <br>
+                            @if ($chef->chef->isVIP)
+                                VIP
+                            @endif<br>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -27,21 +27,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+
+    public function sub_chefs()
     {
-        return view('home', [
-            'meals' => Meal::all(),
-            "chefs" => User::has('chef')->get(),
-            "sub_chefs" => Auth::user()->subscription
-        ]);
+        $retArr = [];
+        $subs =  Auth::user()->subscription;
+        foreach ($subs as $value) {
+            array_push($retArr, User::find($value->chef_id));
+        }
+        return view("Allchefs", ["Title" => "Subscriptions", "chefs" => $retArr]);
     }
-    public function chefs()
-    {
-        $user = Auth::user()->subscription;
-        return $user;
-        // "chefs" => User::has('chef')->get(),
-        // return $users = User::doesnthave('chef')->get();
-    }
+
     public function vipform()
     {
         $user = Auth::user();

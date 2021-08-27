@@ -9,6 +9,11 @@ class Subscription extends Model
 {
     use HasFactory;
     protected $fillable = ['chef_id', "user_id"];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
     /**
      * Relationship: Users
      *
