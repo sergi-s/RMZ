@@ -23,7 +23,7 @@
                             @endif<br>
                             <tr>
                                 <th>Chef Name:</th>
-                                <td><a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a></td>
+                                <td><a href="../chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a></td>
                             </tr>
                             <tr>
                                 <th>Category:</th>
