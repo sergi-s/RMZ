@@ -26,9 +26,7 @@ Auth::routes();
 
 //? All Routes for admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        dd("you are an admins");
-    });
+    Route::get('/admin', [App\Http\Controllers\UserController::class, 'adminDashboard'])->name("admin");
     // approveChef
     Route::get('approveChef/{id}', [App\Http\Controllers\UserController::class, 'approveChef']);
 });
@@ -37,14 +35,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'chef'])->group(function () {
     Route::get('/chef', function () {
         dd("you are an chef");
-    });
+    })->name("chef");
 });
 
 //? All Routes for VIP
 Route::middleware(['auth', 'VIP'])->group(function () {
     Route::get('/vip', function () {
         dd("you are a VIP member");
-    });
+    })->name("vip");
 });
 
 //? All Routes for Normal authenticated users
@@ -73,6 +71,6 @@ Route::middleware(['auth'])->group(function () {
 //TODO: 5.6-    comments
 //DONE: 3- make a user VIP form -> payment method is fictional 
 //DONE: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
-//TODO: 4.1-     make an admin can approve or dine application  
-//TODO: 6- make an admin control panel  
+//DONE: 4.1-     make an admin can approve or dine application  
+//DONE: 6- make an admin control panel  
 //TODO: 6.1      create a resource route for admin to curd the categories

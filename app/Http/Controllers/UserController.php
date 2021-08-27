@@ -65,6 +65,11 @@ class UserController extends Controller
         $user->chef()->save($chef);
         return back()->with('success', 'File has uploaded to the database.')->with('file', $fileName);
     }
+    public function adminDashboard()
+    {
+        $unapproved = ChefProfile::where("approved", 0)->get();
+        return view("AdminDashboard", ['unapproved_apps' => $unapproved]);
+    }
     public function approveChef($id)
     {
         $user  = User::find($id);

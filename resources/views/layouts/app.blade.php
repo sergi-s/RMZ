@@ -80,6 +80,15 @@
                                         <form id="vip-form" action="{{ route('vipform') }}" method="get" class="d-none">
                                             @csrf
                                         </form>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('vip') }}"
+                                            onclick="event.preventDefault();document.getElementById('vip-dashboard').submit();">
+                                            {{ __('VIP dashboard') }}
+                                        </a>
+                                        <form id="vip-dashboard" action="{{ route('vip') }}" method="get"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
                                     @endif
 
                                     @if (!Auth::user()->isChef)
@@ -90,6 +99,26 @@
                                         </a>
 
                                         <form id="chef-form" action="{{ route('chefform') }}" method="get"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('chef') }}"
+                                            onclick="event.preventDefault();document.getElementById('chef-dashboard').submit();">
+                                            {{ __('chef dashboard') }}
+                                        </a>
+                                        <form id="chef-dashboard" action="{{ route('chef') }}" method="get"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    @endif
+
+                                    @if (Auth::user()->isAdmin)
+                                        <a class="dropdown-item" href="{{ route('admin') }}"
+                                            onclick="event.preventDefault();document.getElementById('admin-dashboard').submit();">
+                                            {{ __('Admin dashboard') }}
+                                        </a>
+                                        <form id="admin-dashboard" action="{{ route('admin') }}" method="get"
                                             class="d-none">
                                             @csrf
                                         </form>
