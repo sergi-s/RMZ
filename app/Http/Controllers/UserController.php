@@ -21,29 +21,26 @@ class UserController extends Controller
     }
     public function subscribe($id)
     {
-        if ($id == Auth::user()->id) {
+        $user_id = Auth::user()->id;
+        if ($id == $user_id) {
             return "cant sub to urself";
         }
         if (!User::findOrFail($id)->chef) {
-            return "failed";
+            return "Internal server error";
         }
         $isApproved = DB::table('chef_profiles')->where("user_id", $id)->value("approved");
 
         if ($isApproved) {
-            //TODO fix if subscribed already or not
-            // $isrepeated = DB::table('subscriptions')->where("user_id", Auth::user()->id)->where("chef_id", $id)->value('id');
-            // dd($isrepeated);
-            // // $temp = DB::table('Subscription')->where("user_id", "=", Auth::user()->id)->where("chef_id", "=", $id);
-            // $temp = DB::table('Subscription')
-            //     ->whereRaw('user_id = ? and chef_id = ?', [Auth::user()->id, $id])
-            //     ->get();
-            // dd($temp);
-            $sub = new Subscription(["chef_id" => $id, "user_id" => Auth::user()->id]);
+            $temp = DB::table('subscriptions')->where("chef_id", $id)->where("user_id", $user_id)->value("id");
+            if ($temp !== null) {
+                return "you are already subscribed";
+            }
+            $sub = new Subscription(["chef_id" => $id, "user_id" => $user_id]);
             $sub->save();
             return "you subscribed to" . User::find($id)->name;
         }
 
-        return "error";
+        return "Internal server error";
     }
     public function applyForChef(Request $request)
     {
@@ -77,7 +74,16 @@ class UserController extends Controller
         $chef = ChefProfile::find($id);
         $chef->approved = True;
         $chef->save();
+        //TODO: push notification to chef
         return "User Approved";
+    }
+    public function denyChef($id)
+    {
+        $user  = User::find($id);
+        $user->save();
+        ChefProfile::find($id)->delete();
+        //TODO: push notification to chef
+        return "User denied";
     }
 
     public function vipChef($id)

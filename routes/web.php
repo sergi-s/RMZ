@@ -71,6 +71,6 @@ Route::middleware(['auth'])->group(function () {
 //TODO: 5.6-    comments
 //DONE: 3- make a user VIP form -> payment method is fictional 
 //DONE: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
+//TODO: 4.1-     make an admin can approve or dine application  
 //TODO: 6- make an admin control panel  
 //TODO: 6.1      create a resource route for admin to curd the categories
-//TODO: 4.1-     make an admin can approve or dine application  
