@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,8 @@ class CreateMealsTable extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->increments("id");
             $table->unsignedBigInteger("chef_id");
-            $table->integer("category_id")->unsigned();
+            // $table->integer("category_id")->unsigned();
+            $table->foreignidfor(Category::class);
             $table->double("price");
             $table->string("name");
             $table->string("description");
@@ -24,7 +26,7 @@ class CreateMealsTable extends Migration
 
             $table->foreign('chef_id')->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

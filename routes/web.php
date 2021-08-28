@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MealsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -52,12 +53,18 @@ Route::middleware(['auth'])->group(function () {
         dd("you are an user");
     });
 
+
+    Route::get('/cart', [App\Http\Controllers\MealsController::class, 'cart'])->name('cart');
+    Route::get('/add-to-cart/{id}', [App\Http\Controllers\MealsController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('/update-cart', [App\Http\Controllers\MealsController::class, 'update'])->name('update.cart');
+    Route::get('/remove-from-cart/{id}', [App\Http\Controllers\MealsController::class, 'remove']);
+
     Route::get('/subscriptions', [App\Http\Controllers\HomeController::class, 'sub_chefs'])->name('sub_chefs');
     Route::get('/vipmember', [App\Http\Controllers\UserController::class, 'vipmember'])->name('vipmember');
     Route::get('/vipform', [App\Http\Controllers\HomeController::class, 'vipform'])->name('vipform');
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
     Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
-    Route::get("/subscribe/{id}", [App\Http\Controllers\UserController::class, 'subscribe']);
+    Route::get("/subscribe/{id}", [App\Http\Controllers\UserController::class, 'subscribe'])->name("subscribe");
 });
 
 

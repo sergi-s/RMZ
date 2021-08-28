@@ -29,13 +29,13 @@ class GuestController extends Controller
 
         return view('home', [
             'meals' => $retarr2,
-            "chefs" => User::has('chef')->get(),
+            "chefs" => User::has('chef')->where("isChef", "=", True)->get(),
             "sub_chefs" => $retArr
         ]);
     }
     public function chefs()
     {
-        return view("Allchefs", ["Title" => "All Chefs", "chefs" => User::has('chef')->get()]);
+        return view("Allchefs", ["Title" => "All Chefs", "chefs" => User::has('chef')->where("isChef", "=", True)->get()]);
     }
     public function chef($id)
     {
@@ -44,6 +44,8 @@ class GuestController extends Controller
             return $chef->name . " is not a chef";
         }
         $meals = User::find($id)->getMeals;
+        // return Auth::user()->subscription;
+        // return var_export(in_array($id, array_column(Auth::user()->subscription, "chef_id")));
         return view("Chef", ['chef' => User::find($id), "meals" => $meals]);
     }
 }

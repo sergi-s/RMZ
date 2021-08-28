@@ -36,6 +36,14 @@
                                         <th>Visit:</th>
                                         <td><a href="/meal/{{ $meal->id }}">Click Here</a></td>
                                     </tr>
+                                    <tr>
+                                        <th>Add to cart:</th>
+                                        <td>
+                                            <p class="btn-holder"><a href="{{ route('add.to.cart', $meal->id) }}"
+                                                    class="btn btn-warning btn-block text-center" role="button">Add to
+                                                    cart</a> </p>
+                                        </td>
+                                    </tr>
 
                                 </table>
                             </div>

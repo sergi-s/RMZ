@@ -10,7 +10,6 @@ class Category extends Model
     use HasFactory;
     public function Meals()
     {
-        // return $this->hasMany(Meal::class);
-        return $this->hasMany('App\Models\Meal', "category_id", "id");
+        return $this->hasMany(Meal::class);
     }
 }

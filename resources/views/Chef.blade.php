@@ -12,6 +12,12 @@
                         @if ($chef->isVIP)
                             VIP
                         @endif<br>
+                        {{-- {{ var_export(in_array(3, array_column(Auth::user()->subscription, "id")));}} --}}
+                        @if (Auth::user())
+
+                            <a href="../subscribe/{{ $chef->id }}">SUBSCRIBE</a>
+                        @endif
+
                     </div>
 
                 </div>
