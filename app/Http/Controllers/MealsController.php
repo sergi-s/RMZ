@@ -12,7 +12,14 @@ class MealsController extends Controller
     }
     public function getAllmeals()
     {
-        return view("AllMeals", ['meals' => Meal::all()]);
+        $retarr = [];
+        foreach (Meal::all() as $value) {
+            if ($value->chef->isChef) {
+                array_push($retarr, $value);
+            }
+        }
+
+        return view("AllMeals", ['meals' => $retarr]);
     }
     public function getmeal($id)
     {

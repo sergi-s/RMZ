@@ -19,8 +19,16 @@ class GuestController extends Controller
                 array_push($retArr, User::find($value->chef_id));
             }
         }
+
+        $retarr2 = [];
+        foreach (Meal::all() as $value) {
+            if ($value->chef->isChef) {
+                array_push($retarr2, $value);
+            }
+        }
+
         return view('home', [
-            'meals' => Meal::all(),
+            'meals' => $retarr2,
             "chefs" => User::has('chef')->get(),
             "sub_chefs" => $retArr
         ]);
