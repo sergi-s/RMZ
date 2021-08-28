@@ -27,7 +27,6 @@
 -   [About](#about)
 -   [Getting Started](#getting_started)
 -   [Usage](#usage)
--   [Built Using](#built_using)
 -   [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
@@ -76,34 +75,34 @@ Start the local development server
 
 You can now access the server at http://localhost:8000
 
-<!-- ## 🔧 Running the tests <a name = "tests"></a>
+## 🔧 Adding data <a name = "tests"></a>
 
-Explain how to run the automated tests for this system.
+To use the application with all types of user use this steps to add predefined sets of data
 
-### Break down into end to end tests
+### First: add independent Models
 
-Explain what these tests test and why
+In the CMD, we are going to make use of Seeders
 
-```
-Give an example
-```
+    php artisan db:seed --class=CategorySeeder
+    php artisan db:seed --class=UserSeeder
 
-### And coding style tests
+### Second: add dependent Models
 
-Explain what these tests test and why
+using the id, of users and categories created by the 2 previous commands
+we can add
 
-```
-Give an example
-``` -->
+    php artisan db:seed --class=ChefProfileSeeder
+    php artisan db:seed --class=MealSeeder
 
 ## ✍️ Authors <a name = "authors"></a>
 
 -   [@Karim elhosseiny](https://github.com/karimelhosseiny) - Idea
 -   [@Sergi Samir](https://github.com/sergi-s) - Initial work
--   [@Mahmoud Reda](https://github.com/Mahmoud-Reda29) - 
+-   [@Mahmoud Reda](https://github.com/Mahmoud-Reda29) -
 
 See also the list of [contributors](https://github.com/sergi-s/RMZ/contributors) who participated in this project.
-<!-- 
+
+<!--
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 -   Hat tip to anyone whose code was used
