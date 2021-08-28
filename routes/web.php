@@ -29,6 +29,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\UserController::class, 'adminDashboard'])->name("admin");
     // approveChef
     Route::get('approveChef/{id}', [App\Http\Controllers\UserController::class, 'approveChef']);
+    Route::get('unapproveChef/{id}', [App\Http\Controllers\UserController::class, 'denyChef']);
 });
 
 //? All Routes for chef

@@ -80,7 +80,7 @@ class UserController extends Controller
         $chef->approved = True;
         $chef->save();
         //TODO: push notification to chef
-        return "User Approved";
+        return route("admin");
     }
     public function denyChef($id)
     {
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user->save();
         ChefProfile::find($id)->delete();
         //TODO: push notification to chef
-        return "User denied";
+        return route("admin");
     }
 
     public function vipChef($id)

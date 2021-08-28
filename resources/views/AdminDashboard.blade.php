@@ -13,6 +13,7 @@
                             Work experience: {{ $unapproved_app->years_of_xp }} years <br>
                             <a href="{{ $unapproved_app->license }}" target="__blank">License</a>
                             <a href="approveChef/{{ $unapproved_app->id }}" s>Approve</a>
+                            <a href="unapproveChef/{{ $unapproved_app->id }}" s>UnApprove (delete)</a>
                         </div>
                     @empty
                         No unapproved applications
