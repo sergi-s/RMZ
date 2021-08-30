@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Subscription');
     }
+
+    public function ordered_items()
+    {
+        return $this->belongsToMany(Meal::class, "orders")->withPivot('quantity')
+            ->withTimestamps();;
+    }
 }

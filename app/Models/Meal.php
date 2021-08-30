@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Meal extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
     protected $hidden = [
         'created_at',
         'updated_at',
@@ -19,5 +21,13 @@ class Meal extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function ordered_by()
+    {
+        return $this->belongsToMany(User::class, "orders");
+    }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 }

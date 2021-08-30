@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Meal;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MealsController extends Controller
 {
-    public function index()
-    {
-    }
-    public function getAllmeals()
+    public function index() //getAllmeals
     {
         $retarr = [];
         foreach (Meal::all() as $value) {
@@ -21,9 +21,54 @@ class MealsController extends Controller
 
         return view("AllMeals", ['meals' => $retarr]);
     }
-    public function getmeal($id)
+    public function show($id) //getmeal($id)
     {
         return view("Meal", ['meal' => Meal::find($id)]);
+    }
+    // public function index()
+    // {
+    //     $posts = Meal::take(5)->get();
+
+    //     return view('post.index', compact('posts'));
+    // }
+
+    // public function show(Meal $post)
+    // {
+
+    //     return view('post.single', compact('post'));
+    // }
+
+    public function create()
+    {
+        $cats = Category::all();
+        return view('CreateMeal', ["cats" => $cats]);
+    }
+
+    public function store(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3',
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('/meals')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // dd($request->name);
+        // dd($request->price);
+        Meal::create([
+            'chef_id' => Auth::user()->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+        ]);
+
+
+        return redirect()->back();
     }
     /**
      * Write code on Method
@@ -52,7 +97,8 @@ class MealsController extends Controller
                 "name" => $product->name,
                 "quantity" => 1,
                 "price" => $product->price,
-                "chef_name" => $product->chef->name
+                "chef_name" => $product->chef->name,
+                "meal_id" => $product->id
                 // "image" => $product->image
             ];
         }
@@ -92,5 +138,16 @@ class MealsController extends Controller
             session()->flash('success', 'Product removed successfully');
             return back();
         }
+    }
+    public function checkout()
+    {
+        $cart = session()->get('cart');
+        foreach ($cart as $id => $value) {
+            //if needed
+            // echo ($value['quantity'] * $value['price']);
+            Auth::user()->ordered_items()->attach($value['meal_id'], ["quantity" => $value['quantity']]);
+        }
+        session()->forget('cart');
+        return redirect(route("home"));
     }
 }

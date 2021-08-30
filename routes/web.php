@@ -18,10 +18,23 @@ Route::get('/', function () {
     return redirect("/home");
 });
 
-Route::get("/meals", [App\Http\Controllers\MealsController::class, 'getAllmeals']);
-Route::get("/meal/{id}", [App\Http\Controllers\MealsController::class, 'getmeal']);
+// Route::get('post', 'PostController@create')->name('post.create');
+// Route::post('post', 'PostController@store')->name('post.store');
+// Route::get('/posts', 'PostController@index')->name('posts');
+// Route::get('/article/{post:slug}', 'PostController@show')->name('post.show');
+// Route::post('/comment/store', 'CommentController@store')->name('comment.add');
+// Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
+
+
+
+Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
+Route::get('post', [App\Http\Controllers\MealsController::class, 'create'])->name('post.create');
+Route::post('post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
+Route::get("/meals", [App\Http\Controllers\MealsController::class, 'index']);
+Route::get("/meal/{id}", [App\Http\Controllers\MealsController::class, 'show'])->where('id', '[0-9]+');
 Route::get('/chefs', [App\Http\Controllers\GuestController::class, 'chefs'])->name('chefs');
-Route::get('/chef/{id}', [App\Http\Controllers\GuestController::class, 'chef'])->name('chef');
+Route::get('/chef/{id}', [App\Http\Controllers\GuestController::class, 'chef'])->name('chef')->where('id', '[0-9]+');
 Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->name('home');
 Auth::routes();
 
@@ -38,6 +51,8 @@ Route::middleware(['auth', 'chef'])->group(function () {
     Route::get('/chef', function () {
         dd("you are an chef");
     })->name("chef");
+
+    Route::get('/chef/createMeal', [App\Http\Controllers\MealsController::class, 'create']);
 });
 
 //? All Routes for VIP
@@ -55,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/cart', [App\Http\Controllers\MealsController::class, 'cart'])->name('cart');
+    Route::get('/checkout', [App\Http\Controllers\MealsController::class, 'checkout'])->name('checkout');
     Route::get('/add-to-cart/{id}', [App\Http\Controllers\MealsController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('/update-cart', [App\Http\Controllers\MealsController::class, 'update'])->name('update.cart');
     Route::get('/remove-from-cart/{id}', [App\Http\Controllers\MealsController::class, 'remove']);
