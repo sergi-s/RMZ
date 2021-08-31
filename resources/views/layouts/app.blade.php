@@ -18,7 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/assests/sergi.css') }}" rel="stylesheet">
 
     <!-- links -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -117,7 +118,8 @@
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
 
@@ -127,7 +129,8 @@
                                             onclick="event.preventDefault();document.getElementById('vip-form').submit();">
                                             {{ __('Become VIP') }}
                                         </a>
-                                        <form id="vip-form" action="{{ route('vipform') }}" method="get" class="d-none">
+                                        <form id="vip-form" action="{{ route('vipform') }}" method="get"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     @else
@@ -135,7 +138,8 @@
                                             onclick="event.preventDefault();document.getElementById('vip-dashboard').submit();">
                                             {{ __('VIP dashboard') }}
                                         </a>
-                                        <form id="vip-dashboard" action="{{ route('vip') }}" method="get" class="d-none">
+                                        <form id="vip-dashboard" action="{{ route('vip') }}" method="get"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     @endif
