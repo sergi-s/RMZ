@@ -16,23 +16,63 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- links -->
+
+    {{-- better buttons --}}
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> --}}
+
+    {{-- for icons --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{-- Jquery --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+
+    {{-- have no idea --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> --}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/assests/css/sergi.css') }}" rel="stylesheet">
 
-    <!-- links -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    {{-- Template --}}
+    <link rel="stylesheet" href="{{ asset('css/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/assets/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/assets/css/plugins/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/assets/css/style.css') }}" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
 
 </head>
 
 <body>
     <div id="app">
+        {{-- <header>
+            <div class="main-nav">
+                <div class="container">
+                    <div class="row">
+                        <div class="menu-toggle"></div>
+                        <div class="logo">
+                            <img src="{{ asset('css/assets/images/logo/logo.png') }}" />
+                        </div>
+                        <div class="my-nav">
+                            <div class="menu">
+                                <ul>
+                                    <li><a href="{{ url('/home') }}">Home</a></li>
+                                    <li><a href="#about-us">About Us</a></li>
+                                    <li><a href="#our-menu">Our Meals</a></li>
+                                    <li><a href="#blog">News</a></li>
+                                    <li><a href="#contact">Contact Us</a></li>
+                                    <li><a href="#team">Chefs</a></li>
+                                    <li><a href="#">Register</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header> --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">

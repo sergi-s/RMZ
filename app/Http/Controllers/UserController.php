@@ -37,7 +37,8 @@ class UserController extends Controller
             }
             $sub = new Subscription(["chef_id" => $id, "user_id" => $user_id]);
             $sub->save();
-            return "you subscribed to" . User::find($id)->name;
+            // return "you subscribed to" . User::find($id)->name;
+            return redirect(route("chef",$id));
         }
 
         return "Internal server error";

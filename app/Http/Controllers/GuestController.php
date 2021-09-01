@@ -44,8 +44,12 @@ class GuestController extends Controller
             return $chef->name . " is not a chef";
         }
         $meals = User::find($id)->getMeals;
-        // return Auth::user()->subscription;
-        // return var_export(in_array($id, array_column(Auth::user()->subscription, "chef_id")));
-        return view("Chef", ['chef' => User::find($id), "meals" => $meals]);
+        $flag = false;
+        foreach (Auth::user()->subscription as $key => $value) {
+            if ($value->chef_id == $id) {
+                $flag = true;
+            }
+        }
+        return view("Chef", ['chef' => User::find($id), "meals" => $meals, "subscribed" => $flag]);
     }
 }
