@@ -18,8 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('css/assests/sergi.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/assests/css/sergi.css') }}" rel="stylesheet">
 
     <!-- links -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -39,8 +38,8 @@
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -156,11 +155,11 @@
                                             @csrf
                                         </form>
                                     @else
-                                        <a class="dropdown-item" href="{{ route('chef') }}"
+                                        <a class="dropdown-item" href="{{ route('chefDashboard') }}"
                                             onclick="event.preventDefault();document.getElementById('chef-dashboard').submit();">
                                             {{ __('chef dashboard') }}
                                         </a>
-                                        <form id="chef-dashboard" action="{{ route('chef') }}" method="get"
+                                        <form id="chef-dashboard" action="{{ route('chefDashboard') }}" method="get"
                                             class="d-none">
                                             @csrf
                                         </form>

@@ -8,10 +8,13 @@
                     <div class="card-header">{{ $chef->name }}</div>
 
                     <div class="card-body">
-                        yeas of experience: {{ $chef->years_of_xp }} <br>
+                        yeas of experience: {{ $chef->chef->years_of_xp }} <br>
                         @if ($chef->isVIP)
                             VIP
                         @endif<br>
+                        {{-- {{ Auth::user()->subscription }} --}}
+                        {{-- {{ gettype(Auth::user()->subscription) }} --}}
+                        {{-- {{ array_column(Auth::user()->subscription, "id") }} --}}
                         {{-- {{ var_export(in_array(3, array_column(Auth::user()->subscription, "id")));}} --}}
                         @if (Auth::user())
 

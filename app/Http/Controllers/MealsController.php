@@ -25,23 +25,17 @@ class MealsController extends Controller
     {
         return view("Meal", ['meal' => Meal::find($id)]);
     }
-    // public function index()
-    // {
-    //     $posts = Meal::take(5)->get();
-
-    //     return view('post.index', compact('posts'));
-    // }
-
-    // public function show(Meal $post)
-    // {
-
-    //     return view('post.single', compact('post'));
-    // }
 
     public function create()
     {
         $cats = Category::all();
-        return view('CreateMeal', ["cats" => $cats]);
+        return view('chefDashboard', ["cats" => $cats, 'meals' => auth::user()->getMeals]);
+    }
+
+    public function delete($id)
+    {
+        Meal::where('id', $id)->firstorfail()->delete();
+        return redirect(route("chefDashboard"));
     }
 
     public function store(Request $request)
@@ -57,8 +51,6 @@ class MealsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        // dd($request->name);
-        // dd($request->price);
         Meal::create([
             'chef_id' => Auth::user()->id,
             'name' => $request->name,

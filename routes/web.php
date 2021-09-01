@@ -18,19 +18,6 @@ Route::get('/', function () {
     return redirect("/home");
 });
 
-// Route::get('post', 'PostController@create')->name('post.create');
-// Route::post('post', 'PostController@store')->name('post.store');
-// Route::get('/posts', 'PostController@index')->name('posts');
-// Route::get('/article/{post:slug}', 'PostController@show')->name('post.show');
-// Route::post('/comment/store', 'CommentController@store')->name('comment.add');
-// Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
-
-
-
-Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
-Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
-Route::get('post', [App\Http\Controllers\MealsController::class, 'create'])->name('post.create');
-Route::post('post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
 Route::get("/meals", [App\Http\Controllers\MealsController::class, 'index']);
 Route::get("/meal/{id}", [App\Http\Controllers\MealsController::class, 'show'])->where('id', '[0-9]+');
 Route::get('/chefs', [App\Http\Controllers\GuestController::class, 'chefs'])->name('chefs');
@@ -48,11 +35,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //? All Routes for chef
 Route::middleware(['auth', 'chef'])->group(function () {
-    Route::get('/chef', function () {
-        dd("you are an chef");
-    })->name("chef");
+    // Route::get('/chef', function () {
+    //     dd("you are an chef");
+    // })->name("chef");
 
-    Route::get('/chef/createMeal', [App\Http\Controllers\MealsController::class, 'create']);
+    // Route::get('/chef/createMeal', [App\Http\Controllers\MealsController::class, 'create']);
+
+
+    Route::get('/chef', [App\Http\Controllers\MealsController::class, 'create'])->name('chefDashboard');
+    Route::post('/post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
+    Route::delete('/post/{id}', [App\Http\Controllers\MealsController::class, 'delete'])->name('post.delete');
 });
 
 //? All Routes for VIP
@@ -81,6 +73,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chefform', [App\Http\Controllers\HomeController::class, 'chefform'])->name('chefform');
     Route::post('/chefform', [App\Http\Controllers\UserController::class, 'applyForChef'])->name('applyForChef');
     Route::get("/subscribe/{id}", [App\Http\Controllers\UserController::class, 'subscribe'])->name("subscribe");
+
+
+    Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
+    Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
 });
 
 
