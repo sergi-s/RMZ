@@ -11,6 +11,12 @@ class GuestController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+
+            $Items =  Auth::user()->ordered_items;
+            // return $Items;
+        }
+
         $retArr = [];
         if (Auth::check()) {
 
@@ -28,6 +34,7 @@ class GuestController extends Controller
         }
 
         return view('home', [
+            'OrderedItems' => $Items,
             'meals' => $retarr2,
             "chefs" => User::has('chef')->where("isChef", "=", True)->get(),
             "sub_chefs" => $retArr
