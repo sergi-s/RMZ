@@ -11,6 +11,7 @@ class GuestController extends Controller
 {
     public function index()
     {
+        $Items =  [];
         if (Auth::check()) {
 
             $Items =  Auth::user()->ordered_items;

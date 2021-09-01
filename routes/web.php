@@ -83,15 +83,17 @@ Route::middleware(['auth'])->group(function () {
 
 //DONE: 1- create user controller and move all functionalities there
 //DONE: 2- create a middler ware for diffrent type of users (chef, admin, normal, VIP)
-//TODO: 5- create om el Database with it's relations 
+//DONE: 5- create om el Database with it's relations 
 //DONE: 5.1-    chef profile
 //DONE: 5.2-    meals
 //DONE: 5.3-    subscribtions
-//TODO: 5.4-    orders
+//DONE: 5.4-    orders
 //DONE: 5.5-    categories
-//TODO: 5.6-    comments
+//DONE: 5.6-    comments
 //DONE: 3- make a user VIP form -> payment method is fictional 
 //DONE: 4- make a user chef form  -> form that takes pdf, name, years of expirence  
 //DONE: 4.1-     make an admin can approve or dine application  
 //DONE: 6- make an admin control panel  
-//TODO: 6.1      create a resource route for admin to curd the categories
+//TODO: 6.1-      create a resource route for admin to curd the categories
+//TODO: 7-      create a resource route for chef to crd (without update) the meals
+//TODO: 8- differentiate between chefs and vip chefs  
