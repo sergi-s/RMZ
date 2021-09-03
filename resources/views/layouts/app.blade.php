@@ -47,17 +47,19 @@
                     <div class="row">
                         <div class="menu-toggle"></div>
                         <div class="logo">
-                            <img src="{{ asset('css/assets/images/logo/logo.png') }}" />
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset('css/assets/images/logo/logo.png') }}" />
+                            </a>
                         </div>
                         <div class="my-nav">
 
                             <div class="menu">
                                 <ul>
-                                    <li><a href="#about-us">About Us</a></li>
-                                    <li><a href="#our-menu">Our Meals</a></li>
+                                    <li><a href="{{ route('aboutus') }}">About Us</a></li>
+                                    <li><a href="{{ route('home') }}#our-menu">Our Meals</a></li>
                                     <li><a href="#blog">News</a></li>
-                                    <li><a href="#contact">Contact Us</a></li>
-                                    <li><a href="#team">Chefs</a></li>
+                                    <li><a href="{{ route('aboutus') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('chefs') }}">Chefs</a></li>
                                 </ul>
                             </div>
                             @guest

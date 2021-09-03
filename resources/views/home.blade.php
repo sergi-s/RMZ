@@ -10,9 +10,7 @@
 
 </style>
 @section('content')
-    <!-- <div class="container">
-                                                                                <div class="row justify-content-center">
-                                                                                 -->
+    <!-- <div class="container">                                                                                                                                                        -->
     <section class="slider">
 
         <div class=shape></div>
@@ -42,7 +40,8 @@
                                             </h5>
                                             <ol>
                                                 <li>
-                                                    <a href="#">Order Now<span class="flaticon-right-arrow"></span></a>
+                                                    <a href="#our-menu">Order Now<span
+                                                            class="flaticon-right-arrow"></span></a>
                                                 </li>
                                             </ol>
                                         </div>
@@ -78,7 +77,8 @@
                                             </h5>
                                             <ol>
                                                 <li>
-                                                    <a href="#">Order Now<span class="flaticon-right-arrow"></span></a>
+                                                    <a href="#our-menu">Order Now<span
+                                                            class="flaticon-right-arrow"></span></a>
                                                 </li>
                                             </ol>
                                         </div>
@@ -114,7 +114,8 @@
                                             </h5>
                                             <ol>
                                                 <li>
-                                                    <a href="#">Order Now<span class="flaticon-right-arrow"></span></a>
+                                                    <a href="#our-menu">Order Now<span
+                                                            class="flaticon-right-arrow"></span></a>
                                                 </li>
                                             </ol>
                                         </div>
@@ -135,7 +136,6 @@
     </section>
 
 
-
     <section class="bg-04" id="our-menu">
         <div class="container">
             <div class="row">
@@ -151,48 +151,9 @@
                         </p>
                     </div>
                 </div>
-
-                Ordered Items
                 <div class="col-12">
                     <div class="row">
-                        @empty($OrderedItems)
-                        @else
-                            @foreach ($OrderedItems as $meal)
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="wrapper">
-                                        <div class="tab-content">
-                                            <figure>
-                                                <a href="/meal/{{ $meal->id }}">
-                                                    <img src="{{ asset('css/assets/images/menu/1.jpg') }}" />
-                                                </a>
-                                            </figure>
-                                            <div class="sentence">
-                                                <h3>
-                                                    {{ $meal->name }}<span>${{ $meal->price }}</span>
-                                                </h3>
-                                                <h3>
-                                                    <a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a>
-                                                </h3>
-                                                <h6>{{ $meal->category->name }}</h6>
-                                                <p>
-                                                    {{ $meal->description }}
-                                                </p>
-                                            </div>
-                                            <div class="rate-box">
-                                                <div class="plus">
-                                                    <a href="{{ route('add.to.cart', $meal->id) }}"
-                                                        class="btn btn-warning btn-block text-center" role="button">
-                                                        <span class="flaticon-plus"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            @endforeach
-
-                        @endempty
-
+                        @include('layouts.displayMeals', ['meals' => $meals])
                     </div>
                 </div>
             </div>
@@ -200,72 +161,82 @@
     </section>
 
 
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card">
-                <div class="card-header">Meals</div>
-                @forelse ($meals as $meal)
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <th>Name:</th>
-                                <td>{{ $meal->name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Chef Name:</th>
-                                <td><a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a></td>
-                            </tr>
-                            <tr>
-                                <th>Category:</th>
-                                <td>{{ $meal->category->name }}</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <th>Price:</th>
-                                <td>{{ $meal->price }}</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <th>Description:</th>
-                                <td>{{ $meal->description }}</td>
-                            </tr>
-                            <tr>
-                                <th>Visit:</th>
-                                <td><a href="/meal/{{ $meal->id }}">Click Here</a></td>
-                            </tr>
-                            <tr>
-                                <th>Add to cart:</th>
-                                <td>
-                                    <p class="btn-holder"><a href="{{ route('add.to.cart', $meal->id) }}"
-                                            class="btn btn-warning btn-block text-center" role="button">Add to
-                                            cart</a> </p>
-                                </td>
-                            </tr>
 
-                        </table>
+    @if (count($OrderedItems) > 0)
+        <section class="bg-04" id="your-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading">
+                            <span>Ordered Items</span>
+                            <h2>Your Meals</h2>
+                            <p>
+                                You have ordred this meals, and they are on your way
+                            </p>
+                        </div>
                     </div>
-
-                @empty
-                    No Meals Avilable
-                @endforelse
-
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">{{ __('Chefs') }}</div>
-            @foreach ($chefs as $chef)
-                <div class="card-body">
-                    <a href="chef/{{ $chef->id }}">{{ $chef->name }}</a><br>
-                    yeas of experience: {{ $chef->chef->years_of_xp }} <br>
-                    @if ($chef->chef->isVIP)
-                        VIP
-                    @endif<br>
+                    <div class="col-12">
+                        <div class="row">
+                            @include('layouts.displayMeals', ['meals' => $OrderedItems])
+                        </div>
+                    </div>
                 </div>
-            @endforeach
+            </div>
+        </section>
+
+    @endif
+
+
+
+    <section class="bg-05" id="team">
+        <div class="shape-03"></div>
+        <div class="shape-04"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading">
+                        <span>Team</span>
+                        <h2>Explore Our Team</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Asperiores officiis
+                            explicabo blanditiis consequuntur fugit
+                            fugiat, incidunt totam consectetur veritatis
+                            minus corporis doloribus, qui maxime velit
+                            nesciunt, officia praesentium odit facilis.
+                        </p>
+                    </div>
+                </div>
+                <div class="main-team-card d-flex">
+                    @include('layouts.displayChefs',['chefs'=>$chefs])
+                </div>
+            </div>
+
+            @if (Auth::check())
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading">
+                            <span>Subscriptions</span>
+                            <h2>Subscribe to your favorite chefs</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Asperiores officiis
+                                explicabo blanditiis consequuntur fugit
+                                fugiat, incidunt totam consectetur veritatis
+                                minus corporis doloribus, qui maxime velit
+                                nesciunt, officia praesentium odit facilis.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-team-card d-flex">
+                        @include('layouts.displayChefs',['chefs'=>$sub_chefs])
+                    </div>
+                </div>
+            @endif
+
         </div>
-    </div>
-    @if (Auth::check())
+    </section>
+    {{-- @if (Auth::check())
         <div class="card">
             <div class="card-header">{{ __('Subscriptions') }}</div>
             @foreach ($sub_chefs as $chef)
@@ -278,7 +249,5 @@
                 </div>
             @endforeach
         </div>
-    @endif
-    </div>
-    </div>
+    @endif --}}
 @endsection

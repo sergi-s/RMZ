@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    {{-- <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -18,5 +18,30 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <section class="bg-05" id="team">
+        <div class="shape-03"></div>
+        <div class="shape-04"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading">
+                        <span>Your subscriptions</span>
+                        <h2>Explore Our Team</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Asperiores officiis
+                            explicabo blanditiis consequuntur fugit
+                            fugiat, incidunt totam consectetur veritatis
+                            minus corporis doloribus, qui maxime velit
+                            nesciunt, officia praesentium odit facilis.
+                        </p>
+                    </div>
+                </div>
+                <div class="main-team-card d-flex">
+                    @include('layouts.displayChefs',['chefs'=>$chefs])
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

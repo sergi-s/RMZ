@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <table id="cart" class="table table-hover table-condensed">
+    <table id="cart" class="table table-hover table-condensed sergiFix">
         <thead>
             <tr>
                 <th style="width:50%">Product</th>
@@ -56,7 +56,6 @@
                         Shopping</a>
                     <a href="{{ url('/checkout') }}" class="btn btn-primary"><i class="fa fa-angle-right"></i>
                         checkout</a>
-                    <button class="btn btn-success">Checkout</button>
                 </td>
             </tr>
         </tfoot>
