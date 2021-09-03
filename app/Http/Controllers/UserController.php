@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChefProfile;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ class UserController extends Controller
             $sub = new Subscription(["chef_id" => $id, "user_id" => $user_id]);
             $sub->save();
             // return "you subscribed to" . User::find($id)->name;
-            return redirect(route("chef",$id));
+            return redirect(route("chef", $id));
         }
 
         return "Internal server error";
@@ -68,7 +69,8 @@ class UserController extends Controller
     public function adminDashboard()
     {
         $unapproved = ChefProfile::where("approved", 0)->get();
-        return view("AdminDashboard", ['unapproved_apps' => $unapproved]);
+        $cats = Category::all();
+        return view("AdminDashboard", ['unapproved_apps' => $unapproved, "cats" => $cats]);
     }
     public function approveChef($id)
     {

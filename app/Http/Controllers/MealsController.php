@@ -37,6 +37,11 @@ class MealsController extends Controller
         Meal::where('id', $id)->firstorfail()->delete();
         return redirect(route("chefDashboard"));
     }
+    public function delete2($id)
+    {
+        Category::where('id', $id)->firstorfail()->delete();
+        return redirect(route("admin"));
+    }
 
     public function store(Request $request)
     {
@@ -44,6 +49,7 @@ class MealsController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
             'image' => 'required|mimes:png,jpg,jpeg',
+            'video' => 'mimes:mov,mp3,mp4,wmv,mpg,avi,webm,ogg',
         ]);
 
         if ($validator->fails()) {
@@ -54,11 +60,18 @@ class MealsController extends Controller
         }
         $fileName = "";
         if ($request->file()) {
-
             $fileName = time() . '.' . $request->image->extension();
-
             $request->image->move(public_path('uploads/meals'), $fileName);
         }
+        $vidName = "";
+        if ($request->hasFile('vid')) {
+
+            $file = $request->file('vid');
+            $vidName = $file->getClientOriginalName();
+            $path = public_path() . '/uploads/vids/';
+            $file->move($path, $vidName);
+        }
+
         Meal::create([
             'chef_id' => Auth::user()->id,
             'name' => $request->name,
@@ -66,6 +79,28 @@ class MealsController extends Controller
             'image' => $fileName,
             'category_id' => $request->category_id,
             'description' => $request->description,
+            'video' => $vidName
+        ]);
+
+
+        return redirect()->back();
+    }
+    public function store2(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect(route('admin'))
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Category::create([
+            'name' => $request->name,
         ]);
 
 

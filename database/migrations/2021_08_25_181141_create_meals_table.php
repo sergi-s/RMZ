@@ -22,6 +22,7 @@ class CreateMealsTable extends Migration
             $table->string("name");
             $table->string("description");
             $table->string("image")->nullable();
+            $table->string("video")->nullable();
             $table->timestamps();
 
             $table->foreign('chef_id')->references('id')->on('users')

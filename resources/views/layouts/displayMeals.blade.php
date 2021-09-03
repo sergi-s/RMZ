@@ -16,7 +16,11 @@
                     </h3>
                     <h6>{{ $meal->category->name }}</h6>
                     <p>
-                        {{ $meal->description }}
+                        @if (strlen($meal->description) > 35)
+                            {{ substr($meal->description, 0, 35) }} ...etc
+                        @else
+                            {{ $meal->description }}
+                        @endif
                     </p>
                 </div>
                 <div class="rate-box">

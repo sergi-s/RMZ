@@ -53,9 +53,11 @@ class GuestController extends Controller
         }
         $meals = User::find($id)->getMeals;
         $flag = false;
-        foreach (Auth::user()->subscription as $key => $value) {
-            if ($value->chef_id == $id) {
-                $flag = true;
+        if (Auth::check()) {
+            foreach (Auth::user()->subscription as $key => $value) {
+                if ($value->chef_id == $id) {
+                    $flag = true;
+                }
             }
         }
         return view("Chef", ['chef' => User::find($id), "meals" => $meals, "subscribed" => $flag]);

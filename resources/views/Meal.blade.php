@@ -12,9 +12,20 @@
                 <div class="card">
                     <div class="card-header">{{ $meal->chef->name }}</div>
 
+                    @if($meal->video)
+                    <video width="750" height="340" controls>
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp4">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mov">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp3">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/wmv">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mpg">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/avi">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/webm">
+                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                    @endif
                     <div class="card-body">
-
-
                         <table>
                             <tr>
                                 <th>Name:</th>
@@ -28,7 +39,11 @@
                             @endif<br>
                             <tr>
                                 <th>Chef Name:</th>
-                                <td><a href="../chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a></td>
+                                <td><a href="../chef/{{ $meal->chef->id }}">
+                                        <img class="image rounded-circle"
+                                            src="{{ asset('/uploads/avatars/' . $meal->chef->avatar) }}"
+                                            {{ $meal->chef->name }} alt="profile_image"
+                                            style="width: 50px;height: 50px; padding: 5px; margin: 0px; "></a></td>
                             </tr>
                             <tr>
                                 <th>Category:</th>
@@ -55,31 +70,36 @@
 
                         </table>
                     </div>
-
-                    <div class="card-body">
+                    <br>
+                    <div class="card-header">
                         <h5>Display Comments</h5>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
 
-                        @include('replies', ['comments' => $meal->comments, 'meal_id' => $meal->id])
-                        {{-- <ul>
+
+                            @include('layouts.replies', ['comments' => $meal->comments, 'meal_id' => $meal->id])
+                            {{-- <ul>
                             @each('replies', $meal->comments, 'comments')
                         </ul> --}}
 
-                        <hr />
-                    </div>
+                            <hr />
+                        </div>
 
-                    <div class="card-body">
-                        <h5>Leave a comment</h5>
-                        <form method="post" action="{{ route('comment.add') }}">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" name="comment" class="form-control" />
-                                <input type="hidden" name="meal_id" value="{{ $meal->id }}" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;"
-                                    value="Add Comment" />
-                            </div>
-                        </form>
+                        <div class="card-body">
+                            <h5>Leave a comment</h5>
+                            <form method="post" action="{{ route('comment.add') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" name="comment" class="form-control" />
+                                    <input type="hidden" name="meal_id" value="{{ $meal->id }}" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-sm btn-outline-danger py-0"
+                                        style="font-size: 0.8em;" value="Add Comment" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

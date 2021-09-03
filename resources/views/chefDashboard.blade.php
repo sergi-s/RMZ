@@ -19,6 +19,11 @@
                                     <input type="file" name="image" class="custom-file-input" required>
                                     <label class="custom-file-label" for="chooseFile">Choose Image</label>
                                 </div>
+                                <br>
+                                <div class="custom-file">
+                                    <input type="file" name="vid" class="custom-file-input">
+                                    <label class="custom-file-label" for="chooseFile">Choose Video</label>
+                                </div>
                                 <label class="label">Meal Price: </label>
                                 <input type="text" name="price" class="form-control" required />
 

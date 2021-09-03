@@ -2,7 +2,8 @@
     <div class="team-setup">
         <div class="team-items">
             <div class="team-user">
-                <a href="chef/{{ $chef->id }}"><img src="{{ asset('css/assets/images/team/1.jpg') }}" /></a>
+
+                <a href="chef/{{ $chef->id }}"><img src="{{ asset('/uploads/avatars/' . $chef->avatar) }}" /></a>
             </div>
             <div class="team-name">
                 <h2><a href="chef/{{ $chef->id }}">{{ $chef->name }}</a></h2>

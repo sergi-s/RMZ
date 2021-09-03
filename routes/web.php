@@ -33,6 +33,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // approveChef
     Route::get('approveChef/{id}', [App\Http\Controllers\UserController::class, 'approveChef']);
     Route::get('unapproveChef/{id}', [App\Http\Controllers\UserController::class, 'denyChef']);
+
+    
+    Route::post('/category', [App\Http\Controllers\MealsController::class, 'store2'])->name('category.store');
+    Route::delete('/category/{id}', [App\Http\Controllers\MealsController::class, 'delete2'])->name('category.delete');
 });
 
 //? All Routes for chef
@@ -47,6 +51,7 @@ Route::middleware(['auth', 'chef'])->group(function () {
     Route::get('/chef', [App\Http\Controllers\MealsController::class, 'create'])->name('chefDashboard');
     Route::post('/post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
     Route::delete('/post/{id}', [App\Http\Controllers\MealsController::class, 'delete'])->name('post.delete');
+
 });
 
 //? All Routes for VIP
