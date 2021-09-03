@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class UserController extends Controller
 {
@@ -59,9 +58,9 @@ class UserController extends Controller
 
             $fileName = time() . '.' . $request->license->extension();
 
-            $request->license->move(public_path('uploads'), $fileName);
+            $request->license->move(public_path('uploads/CVs'), $fileName);
 
-            $chef->license = '/uploads/' . $fileName;
+            $chef->license = '/uploads/CVs/' . $fileName;
         }
         $user->chef()->save($chef);
         return back()->with('success', 'File has uploaded to the database.')->with('file', $fileName);

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean("isAdmin")->default(false);
             $table->boolean("isVIP")->default(false);
             $table->boolean("isChef")->default(false);
+            $table->string('avatar')->default('user.png');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

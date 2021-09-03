@@ -1,5 +1,9 @@
 @foreach ($comments as $comment)
     <div class="display-comment">
+
+        <p><img class="image rounded-circle" src="{{ asset('/uploads/avatars/' . $comment->user->avatar) }}"
+                alt="profile_image" style="width: 50px;height: 50px; padding: 5px; margin: 0px; "></p>
+                
         <strong>{{ $comment->user->name }}</strong>
         <p>{{ $comment->comment }}</p>
         <a href="" id="reply"></a>
