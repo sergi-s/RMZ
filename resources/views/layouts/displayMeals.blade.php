@@ -4,7 +4,7 @@
             <div class="tab-content">
                 <figure>
                     <a href="/meal/{{ $meal->id }}">
-                        <img src="{{ asset('css/assets/images/menu/1.jpg') }}" />
+                        <img src="{{ asset('/uploads/meals/' . $meal->image) }}" />
                     </a>
                 </figure>
                 <div class="sentence">
@@ -25,7 +25,22 @@
                             role="button">
                             <span class="flaticon-plus"></span></a>
                     </div>
+
+                    @if ($delete)
+                        <div class="plus">
+                            <a href="{{ route('post.delete', $meal->id) }}"
+                                onclick="event.preventDefault();document.getElementById('delete-form-{{ $meal->id }}').submit();"
+                                class="btn btn-warning btn-block text-center" role="button">
+                                <span class="flaticon-minus">-</span></a>
+                            <form id="delete-form-{{ $meal->id }}" +
+                                action="{{ route('post.delete', $meal->id) }}" method="post">
+                                @csrf @method('DELETE')
+                            </form>
+                        </div>
+                    @endif
                 </div>
+
+
             </div>
         </div>
     </div>

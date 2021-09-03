@@ -153,7 +153,7 @@
                 </div>
                 <div class="col-12">
                     <div class="row">
-                        @include('layouts.displayMeals', ['meals' => $meals])
+                        @include('layouts.displayMeals', ['meals' => $meals,"delete"=>False])
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="col-12">
                         <div class="row">
-                            @include('layouts.displayMeals', ['meals' => $OrderedItems])
+                            @include('layouts.displayMeals', ['meals' => $OrderedItems,"delete"=>False])
                         </div>
                     </div>
                 </div>

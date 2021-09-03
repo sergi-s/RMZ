@@ -43,6 +43,7 @@ class MealsController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
+            'image' => 'required|mimes:png,jpg,jpeg',
         ]);
 
         if ($validator->fails()) {
@@ -51,10 +52,18 @@ class MealsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $fileName = "";
+        if ($request->file()) {
+
+            $fileName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads/meals'), $fileName);
+        }
         Meal::create([
             'chef_id' => Auth::user()->id,
             'name' => $request->name,
             'price' => $request->price,
+            'image' => $fileName,
             'category_id' => $request->category_id,
             'description' => $request->description,
         ]);
