@@ -24,6 +24,7 @@ Route::get("/meal/{id}", [App\Http\Controllers\MealsController::class, 'show'])-
 Route::get('/chefs', [App\Http\Controllers\GuestController::class, 'chefs'])->name('chefs');
 Route::get('/chef/{id}', [App\Http\Controllers\GuestController::class, 'chef'])->name('chef')->where('id', '[0-9]+');
 Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->name('home');
+Route::get('/aboutus', [App\Http\Controllers\GuestController::class, 'aboutus'])->name('aboutus');
 Auth::routes();
 
 //? All Routes for admin
@@ -95,5 +96,6 @@ Route::middleware(['auth'])->group(function () {
 //DONE: 4.1-     make an admin can approve or dine application  
 //DONE: 6- make an admin control panel  
 //TODO: 6.1-      create a resource route for admin to curd the categories
-//TODO: 7-      create a resource route for chef to crd (without update) the meals
-//TODO: 8- differentiate between chefs and vip chefs  
+//TODO: 7- create a resource route for chef to crd (without update) the meals
+//TODO: 9- Add image attribute for meals and chefs
+//DONE: 8- differentiate between chefs and vip chefs  

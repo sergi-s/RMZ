@@ -79,6 +79,11 @@ class MealsController extends Controller
     public function addToCart($id)
     {
         $product = Meal::findOrFail($id);
+        // dd($product->chef->chef->isVIP, auth::user()->isVIP, $product->chef->chef->isVIP == auth::user()->isVIP);
+
+        if ($product->chef->chef->isVIP != auth::user()->isVIP) {
+            return redirect('vipform');
+        }
 
         $cart = session()->get('cart', []);
 

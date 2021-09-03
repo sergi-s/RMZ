@@ -60,4 +60,8 @@ class GuestController extends Controller
         }
         return view("Chef", ['chef' => User::find($id), "meals" => $meals, "subscribed" => $flag]);
     }
+    public function aboutus()
+    {
+        return view("aboutus");
+    }
 }
