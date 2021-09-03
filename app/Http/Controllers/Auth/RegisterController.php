@@ -66,7 +66,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $request = app("request");
-        $fileName = "/uploads/avatars/user.png";
+        $fileName = "user.png";
         if ($request->hasFile('avatar')) {
             $fileName = time() . '.' . $request->avatar->extension();
 
