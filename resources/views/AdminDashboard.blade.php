@@ -1,4 +1,9 @@
 @extends('layouts.app')
+<style>
+        .slider{
+            margin-top: -80px;
+        }
+    </style>
 @section('content')
 
     @if (count($unapproved_apps) > 0)
@@ -27,12 +32,17 @@
         </div>
 
     @endif
-
+   
+    <section class="slider"> 
+      <div class="tomato"></div>
+      <br>
+      <br> 
     <div class="container sergiFix">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
+                        
                         <form method="post" action="{{ route('category.store') }}">
                             <div class="form-group">
                                 @csrf
@@ -46,7 +56,7 @@
                     </div>
                 </div>
                 <br>
-                <table class="table">
+                <table class="table meshtable">
 
                     <thead style="background-color: #ffc107">
                         <tr>
@@ -79,5 +89,5 @@
             </div>
         </div>
     </div>
-
+    </section>
 @endsection

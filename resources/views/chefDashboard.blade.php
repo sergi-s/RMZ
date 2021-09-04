@@ -1,6 +1,17 @@
 @extends('layouts.app')
+<style>
+    .slider {
+        margin-top: -80px;
+        
+    }
+    </style>
 
 @section('content')
+<section class="slider">
+    <div class=shape></div>
+        <div class=shape-01> </div>
+        <br>
+        <br>
     <div class="container sergiFix">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -30,7 +41,7 @@
                                 <label class="label">Meal Category: </label>
                                 <select name="category_id" class="form-control">
                                     @forelse ($cats as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @empty
 
                                     @endforelse
@@ -52,6 +63,7 @@
             </div>
 
         </div>
+        </section>
         <section class="bg-04" id="our-menu">
             <div class="container">
                 <div class="row">
@@ -63,4 +75,6 @@
                 </div>
             </div>
         </section>
-    @endsection
+    </div>
+
+@endsection

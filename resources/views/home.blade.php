@@ -211,11 +211,10 @@
                     <div class="heading">
                         <span>Work</span>
                         <h2>How It Works</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Asperiores officiis explicabo blanditiis consequuntur fugit
-                            fugiat, incidunt totam consectetur veritatis minus corporis
-                            doloribus, qui maxime velit nesciunt, officia praesentium odit
-                            facilis.</p>
+                        <p> The process consists of a customer choosing the meal of their choice,
+                             scanning the menu items, choosing an item, and finally choosing for delivery.
+                             Payment is then administered by paying with a credit card or debit card through 
+                             website or in cash to the delivery</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -224,9 +223,9 @@
                             <div class="icons">
                                 <span class="flaticon-fish"></span>
                             </div>
-                            <h3>Pick Meals</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Asperiores officiis explicabo blanditiis consequuntur fugit
+                            <h3>Ordering Meals</h3>
+                            <p>Giving our customers the ability to search, filter, select, and order what they desire to eat,
+                                 online - On the website, effortlessly.
                             </p>
                         </div>
                     </div>
@@ -237,9 +236,9 @@
                             <div class="icons">
                                 <span class="flaticon-touch"></span>
                             </div>
-                            <h3>choose How Often</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Asperiores officiis explicabo blanditiis consequuntur fugit
+                            <h3>Reliable Communication</h3>
+                            <p>Allow our customers to track their orders on your food ordering app 
+                                and keep them updated and satisfied with transparent orders statuses and details.
                             </p>
                         </div>
                     </div>
@@ -251,8 +250,8 @@
                                 <span class="flaticon-catering"></span>
                             </div>
                             <h3>Fast Deliveries</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Asperiores officiis explicabo blanditiis consequuntur fugit
+                            <p>Create a seamless online food ordering and delivery experience for our customers
+                                 & boost our ROI from your online food marketplace business.
                             </p>
                         </div>
                     </div>
@@ -321,14 +320,8 @@
                 <div class="col-12">
                     <div class="heading">
                         <span>Team</span>
-                        <h2>Explore Our Team</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Asperiores officiis
-                            explicabo blanditiis consequuntur fugit
-                            fugiat, incidunt totam consectetur veritatis
-                            minus corporis doloribus, qui maxime velit
-                            nesciunt, officia praesentium odit facilis.
+                        <h2>Explore Our Chefs</h2>
+                        <p> We have the best talented well-known chefs around the world gathered here to produce the best tasted meals foreve as we believe that everyone deserves to taste good 
                         </p>
                     </div>
                 </div>
