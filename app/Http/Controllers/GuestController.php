@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
+    /**
+     * Show the application Home page.
+     *
+     * @return Home page
+     */
+
     public function index()
     {
         $Items =  [];
         if (Auth::check()) {
 
             $Items =  Auth::user()->ordered_items;
-            // return $Items;
         }
 
         $retArr = [];
@@ -28,7 +33,7 @@ class GuestController extends Controller
         }
 
         $retarr2 = [];
-        foreach (Meal::all() as $value) {
+        foreach (Meal::paginate(6) as $value) {
             if ($value->chef->isChef) {
                 array_push($retarr2, $value);
             }

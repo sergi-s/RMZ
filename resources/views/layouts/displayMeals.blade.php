@@ -1,4 +1,4 @@
-@foreach ($meals as $meal)
+@forelse ($meals as $meal)
     <div class="col-md-4 col-sm-6">
         <div class="wrapper">
             <div class="tab-content">
@@ -48,4 +48,9 @@
             </div>
         </div>
     </div>
-@endforeach
+
+@empty
+    <div class="container">
+        <h4>No Meals Found</h4>
+    </div>
+@endforelse

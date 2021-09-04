@@ -22,11 +22,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application Home page.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
 
     public function sub_chefs()
     {

@@ -10,16 +10,26 @@ use Illuminate\Support\Facades\Validator;
 
 class MealsController extends Controller
 {
-    public function index() //getAllmeals
+    public function index(Request $request) //getAllmeals
     {
         $retarr = [];
-        foreach (Meal::all() as $value) {
+        $temp = [];
+        if (request('term')) {
+            $temp = Meal::where('name', 'Like', '%' . request('term') . '%')->orderBy('id', 'DESC')->paginate(10);
+        } else if (request('cat')) {
+            $temp = Meal::where('category_id', '=', request('cat'))->orderBy('id', 'DESC')->paginate(10);
+        } else {
+            $temp = Meal::paginate(10);
+        }
+
+        foreach ($temp as $value) {
             if ($value->chef->isChef) {
                 array_push($retarr, $value);
             }
         }
+        $cats = Category::all();
 
-        return view("AllMeals", ['meals' => $retarr]);
+        return view("AllMeals", ['meals' => $temp, "cats" => $cats]);
     }
     public function show($id) //getmeal($id)
     {
