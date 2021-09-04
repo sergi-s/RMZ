@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//? All Guest Routes  
 Route::get('/', function () {
     return redirect("/home");
 });
@@ -53,10 +54,8 @@ Route::middleware(['auth', 'VIP'])->group(function () {
 
 //? All Routes for Normal authenticated users
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user', function () {
-        dd("User Profile");
-    });
 
+    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('profile');
 
     Route::get('/cart', [App\Http\Controllers\MealsController::class, 'cart'])->name('cart');
     Route::get('/checkout', [App\Http\Controllers\MealsController::class, 'checkout'])->name('checkout');

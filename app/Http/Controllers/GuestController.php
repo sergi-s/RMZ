@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Meal;
 use Illuminate\Support\Facades\Auth;
@@ -17,21 +17,7 @@ class GuestController extends Controller
 
     public function index()
     {
-        $Items =  [];
-        if (Auth::check()) {
-
-            $Items =  Auth::user()->ordered_items;
-        }
-
-        $retArr = [];
-        if (Auth::check()) {
-
-            $subs =  Auth::user()->subscription;
-            foreach ($subs as $value) {
-                array_push($retArr, User::find($value->chef_id));
-            }
-        }
-
+        //* Get meals for approved chefs of paginated by 6
         $retarr2 = [];
         foreach (Meal::paginate(6) as $value) {
             if ($value->chef->isChef) {
@@ -39,11 +25,14 @@ class GuestController extends Controller
             }
         }
 
+        //* Get meals for approved chefs of the last day
+        $date = Carbon::now()->subDays(7);
+        $lastDay = Meal::where('created_at', '>=', $date)->get();
+        
         return view('home', [
-            'OrderedItems' => $Items,
             'meals' => $retarr2,
             "chefs" => User::has('chef')->where("isChef", "=", True)->get(),
-            "sub_chefs" => $retArr
+            "lastDay" => $lastDay,
         ]);
     }
     public function chefs()

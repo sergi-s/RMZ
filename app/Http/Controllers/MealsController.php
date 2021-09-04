@@ -13,13 +13,12 @@ class MealsController extends Controller
     public function index(Request $request) //getAllmeals
     {
         $retarr = [];
-        $temp = [];
+        $temp = $temp = Meal::paginate(10);
+        if (request('cat')) {
+            $temp = Meal::where('category_id', '=', request('cat'))->orderBy('id', 'DESC')->paginate(10);
+        }
         if (request('term')) {
             $temp = Meal::where('name', 'Like', '%' . request('term') . '%')->orderBy('id', 'DESC')->paginate(10);
-        } else if (request('cat')) {
-            $temp = Meal::where('category_id', '=', request('cat'))->orderBy('id', 'DESC')->paginate(10);
-        } else {
-            $temp = Meal::paginate(10);
         }
 
         foreach ($temp as $value) {
