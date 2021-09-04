@@ -18,6 +18,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        //*get subscribed to chefs
+        $retArr = [];
+        $subs =  Auth::user()->subscription;
+        foreach ($subs as $value) {
+            array_push($retArr, User::find($value->chef_id));
+        }
+        //*get ordered items
+        $Items =  Auth::user()->ordered_items;
+
+        return view("Profile", ["sub_chefs" => $retArr, "ordered_items" => $Items]);
     }
     public function subscribe($id)
     {

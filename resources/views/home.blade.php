@@ -285,34 +285,6 @@
         </div>
     </section>
 
-
-
-    @if (count($OrderedItems) > 0)
-        <section class="bg-04" id="your-menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="heading">
-                            <span>Ordered Items</span>
-                            <h2>Your Meals</h2>
-                            <p>
-                                You have ordred this meals, and they are on your way
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="row">
-                            @include('layouts.displayMeals', ['meals' => $OrderedItems,"delete"=>False])
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    @endif
-
-
-
     <section class="bg-05" id="team">
         <div class="shape-03"></div>
         <div class="shape-04"></div>
@@ -337,28 +309,6 @@
                 </div>
             </div>
 
-            @if (Auth::check())
-                <div class="row">
-                    <div class="col-12">
-                        <div class="heading">
-                            <span>Subscriptions</span>
-                            <h2>Subscribe to your favorite chefs</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Asperiores officiis
-                                explicabo blanditiis consequuntur fugit
-                                fugiat, incidunt totam consectetur veritatis
-                                minus corporis doloribus, qui maxime velit
-                                nesciunt, officia praesentium odit facilis.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="main-team-card d-flex">
-                        @include('layouts.displayChefs',['chefs'=>$sub_chefs])
-                    </div>
-                </div>
-            @endif
-
         </div>
     </section>
     <!-- --------------------------------------------------------BEST UPDATES---------------------------------------------------------- -->
@@ -378,7 +328,7 @@
                 </div>
 
                 <div class="blog-main-card d-flex">
-                    <article class="blog-sub">
+                    {{-- <article class="blog-sub">
                         <div class="blog-content">
                             <img src="assets/images/blog/1.jpg">
                         </div>
@@ -399,70 +349,12 @@
                                 </ol>
                             </div>
                         </div>
-                    </article>
+                    </article> --}}
 
-                    <article class="blog-sub">
-                        <div class="blog-content">
-                            <img src="assets/images/blog/2.jpg">
-                        </div>
-                        <div class="blog-content-section">
-                            <div class="blo-content-title">
-                                <h4>Possession so comparison inquietude he conviction </h4>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque at numquam, asperiores
-                                    aut
-                                    praesentium
-                                    facilis ratione! Voluptatibus neque dignissimos ipsa atque veniam sint omnis in
-                                    blanditiis, nemo fugit
-                                    animi assumenda.</p>
-                            </div>
-                            <div class="blog-admin">
-                                <ol>
-                                    <li><i class="fal fa-user-tie"></i> By Admin</li>
-                                    <li><i class="fal fa-calendar-alt"></i> july 28, 2020</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="blog-sub">
-                        <div class="blog-content">
-                            <img src="assets/images/blog/3.jpg">
-                        </div>
-                        <div class="blog-content-section">
-                            <div class="blo-content-title">
-                                <h4>Possession so comparison inquietude he conviction </h4>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque at numquam, asperiores
-                                    aut
-                                    praesentium
-                                    facilis ratione! Voluptatibus neque dignissimos ipsa atque veniam sint omnis in
-                                    blanditiis, nemo fugit
-                                    animi assumenda.</p>
-                            </div>
-                            <div class="blog-admin">
-                                <ol>
-                                    <li><i class="fal fa-user-tie"></i> By Admin</li>
-                                    <li><i class="fal fa-calendar-alt"></i> july 28, 2020</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </article>
+                    @include('layouts.displayMeals', ['meals' => $lastDay,"delete"=>False])
                 </div>
             </div>
         </div>
     </section>
     <!-- ----------------------------------------------------------------------------------------------------------------------------------  -->
-    {{-- @if (Auth::check())
-        <div class="card">
-            <div class="card-header">{{ __('Subscriptions') }}</div>
-@foreach ($sub_chefs as $chef)
-<div class="card-body">
-    <a href="chef/{{ $chef->id }}">{{ $chef->name }}</a><br>
-    yeas of experience: {{ $chef->chef->years_of_xp }} <br>
-    @if ($chef->chef->isVIP)
-    VIP
-    @endif<br>
-</div>
-@endforeach
-</div>
-@endif --}}
 @endsection
