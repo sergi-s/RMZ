@@ -3,6 +3,13 @@
 .sergiFix {
     margin-top: 6%;
 }
+.roundimg{
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    margin: 0px;
+    border-radius: 50%;
+}
 body {
     font-family: "Poppins", sans-serif;
     margin: 0;
@@ -242,6 +249,16 @@ header .menu.active::before {
 .slider {
     position: relative;
     padding: 0;
+}
+.slider .leftimage{
+    position: absolute;
+    left: 100px;
+    bottom: 10px;
+    width: 308px;
+    height: 308px;
+    background: url(../images/onion.jpg);
+    background-repeat: no-repeat;
+    /*transform: rotate(-29deg);*/
 }
 .slider .tomato{
     position: absolute;

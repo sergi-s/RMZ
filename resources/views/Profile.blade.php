@@ -5,9 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Hello {{ Auth::user()->name }}@if (Auth::user()->avatar)
-                            <img class="image rounded-circle" src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}"
-                                alt="profile_image" style="width: 50px;height: 50px; padding: 5px; margin: 0px; ">
+                    <div class="card-header" style="display: flex; background-color: #ff9106;">
+                    <img class="image rounded-circle" src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}"
+                                alt="profile_image" style="width: 100px;height: 100px; padding: 5px; margin: 0px; border-radius: 50px; ">
+                    <h1 style="padding-top: 10px; padding-left: 20px;">Hello {{ Auth::user()->name }}@if (Auth::user()->avatar)</h1>
+
                         @endif
                     </div>
 

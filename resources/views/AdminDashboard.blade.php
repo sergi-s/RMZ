@@ -32,17 +32,18 @@
         </div>
 
     @endif
-   
-    <section class="slider"> 
+
+    <section class="slider">
       <div class="tomato"></div>
+      <div class="leftimage"></div>
       <br>
-      <br> 
+      <br>
     <div class="container sergiFix">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        
+
                         <form method="post" action="{{ route('category.store') }}">
                             <div class="form-group">
                                 @csrf
