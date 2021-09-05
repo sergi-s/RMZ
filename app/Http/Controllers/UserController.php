@@ -94,6 +94,19 @@ class UserController extends Controller
         //TODO: push notification to chef
         return redirect(route("admin"));
     }
+    public function approveVIPChef($id)
+    {
+        $user  = User::find($id);
+        $user->isChef = True;
+        $user->save();
+
+        $chef = ChefProfile::find($id);
+        $chef->approved = True;
+        $chef->isVIP = True;
+        $chef->save();
+        //TODO: push notification to chef
+        return redirect(route("admin"));
+    }
     public function denyChef($id)
     {
         $user  = User::find($id);
