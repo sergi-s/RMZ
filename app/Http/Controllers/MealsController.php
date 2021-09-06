@@ -35,6 +35,11 @@ class MealsController extends Controller
         return view("Meal", ['meal' => Meal::find($id)]);
     }
 
+    /**
+     * Chef Dashboard, get number of orders, see/delete his meals,
+     *
+     * @return View
+     */
     public function create()
     {
         $total = 0;
@@ -43,10 +48,9 @@ class MealsController extends Controller
                 $total += count($value->ordered_by);
             }
         }
-        
-    
+
         $cats = Category::all();
-        return view('chefDashboard', ["cats" => $cats, 'meals' => auth::user()->getMeals,"nOrders"=>$total]);
+        return view('chefDashboard', ["cats" => $cats, 'meals' => auth::user()->getMeals, "nOrders" => $total]);
     }
 
     /**
@@ -237,6 +241,11 @@ class MealsController extends Controller
         session()->forget('cart');
         return redirect(route("home"));
     }
+    /**
+     * Display count of users that oredered all meals for this chef
+     * 
+     * @return 
+     */
     public function myorders()
     {
         $work = [];

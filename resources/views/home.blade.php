@@ -212,9 +212,9 @@
                         <span>Work</span>
                         <h2>How It Works</h2>
                         <p> The process consists of a customer choosing the meal of their choice,
-                             scanning the menu items, choosing an item, and finally choosing for delivery.
-                             Payment is then administered by paying with a credit card or debit card through 
-                             website or in cash to the delivery</p>
+                            scanning the menu items, choosing an item, and finally choosing for delivery.
+                            Payment is then administered by paying with a credit card or debit card through
+                            website or in cash to the delivery</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -224,8 +224,9 @@
                                 <span class="flaticon-fish"></span>
                             </div>
                             <h3>Ordering Meals</h3>
-                            <p>Giving our customers the ability to search, filter, select, and order what they desire to eat,
-                                 online - On the website, effortlessly.
+                            <p>Giving our customers the ability to search, filter, select, and order what they desire to
+                                eat,
+                                online - On the website, effortlessly.
                             </p>
                         </div>
                     </div>
@@ -237,7 +238,7 @@
                                 <span class="flaticon-touch"></span>
                             </div>
                             <h3>Reliable Communication</h3>
-                            <p>Allow our customers to track their orders on your food ordering app 
+                            <p>Allow our customers to track their orders on your food ordering app
                                 and keep them updated and satisfied with transparent orders statuses and details.
                             </p>
                         </div>
@@ -251,7 +252,7 @@
                             </div>
                             <h3>Fast Deliveries</h3>
                             <p>Create a seamless online food ordering and delivery experience for our customers
-                                 & boost our ROI from your online food marketplace business.
+                                & boost our ROI from your online food marketplace business.
                             </p>
                         </div>
                     </div>
@@ -293,7 +294,8 @@
                     <div class="heading">
                         <span>Team</span>
                         <h2>Explore Our Chefs</h2>
-                        <p> We have the best talented well-known chefs around the world gathered here to produce the best tasted meals foreve as we believe that everyone deserves to taste good 
+                        <p> We have the best talented well-known chefs around the world gathered here to produce the best
+                            tasted meals foreve as we believe that everyone deserves to taste good
                         </p>
                     </div>
                 </div>
@@ -305,23 +307,23 @@
         </div>
     </section>
     <!-- --------------------------------------------------------BEST UPDATES---------------------------------------------------------- -->
-    <section class="bg-06" id="blog">
+    <section class="bg-04" id="blog">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="heading">
                         <span>Best Updates</span>
                         <h2>Explore Our News</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Asperiores officiis explicabo blanditiis consequuntur fugit
-                            fugiat, incidunt totam consectetur veritatis minus corporis
-                            doloribus, qui maxime velit nesciunt, officia praesentium odit
-                            facilis.</p>
+                        <p>We review All new Chef meals, and choose the best for you, These are the Best meals in The last
+                            Day, Enjoy your browsing. Lorem ipsum dolor sit amet consectetur
+                        </p>
                     </div>
                 </div>
 
-                <div class="blog-main-card d-flex">
-                    @include('layouts.displayMeals', ['meals' => $lastDay,"delete"=>False])
+                <div class="col-12">
+                    <div class="row">
+                        @include('layouts.displayMeals', ['meals' => $lastDay,"delete"=>False])
+                    </div>
                 </div>
             </div>
         </div>

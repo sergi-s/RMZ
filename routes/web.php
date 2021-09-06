@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-//? All Guest Routes  
+/**
+ * All routes for unRegistered Users (Guestes) 
+ * 
+ * ?Routes
+ */
 Route::get('/', function () {
     return redirect("/home");
 });
@@ -26,7 +30,11 @@ Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->nam
 Route::get('/aboutus', [App\Http\Controllers\GuestController::class, 'aboutus'])->name('aboutus');
 Auth::routes();
 
-//? All Routes for admin
+/**
+ * All routes for Admin
+ * 
+ * ?middleware Group
+ */
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\UserController::class, 'adminDashboard'])->name("admin");
 
@@ -38,7 +46,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/category/{id}', [App\Http\Controllers\MealsController::class, 'delete2'])->name('category.delete')->where('id', '[0-9]+');
 });
 
-//? All Routes for chef
+/**
+ * All Routes for chefs
+ * 
+ * ? middleware Chef
+ */
 Route::middleware(['auth', 'chef'])->group(function () {
 
     Route::get('/chef', [App\Http\Controllers\MealsController::class, 'create'])->name('chefDashboard');
@@ -47,14 +59,24 @@ Route::middleware(['auth', 'chef'])->group(function () {
     Route::get('/myorders', [App\Http\Controllers\MealsController::class, 'myorders'])->name('myorders');
 });
 
-//? All Routes for VIP
+
+/**
+ * All Routes for VIP Users
+ * 
+ * ? middleware VIP User
+ */
 Route::middleware(['auth', 'VIP'])->group(function () {
     Route::get('/vip', function () {
         dd("VIP profile");
     })->name("vip");
 });
 
-//? All Routes for Normal authenticated users
+
+/**
+ * All Routes for Normal authenticated users
+ * 
+ * ? middleware authenticated users
+ */
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('profile');

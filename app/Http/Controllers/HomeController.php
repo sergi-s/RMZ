@@ -21,12 +21,11 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     
     /**
      * ‘User Subscribe to a certain Chef
      *
-     * @return response()
+     * @return View
      */
     public function sub_chefs()
     {
@@ -41,7 +40,7 @@ class HomeController extends Controller
     /**
      * VIP form page
      *
-     * @return response()
+     * @return VIP
      */
     public function vipform()
     {
