@@ -1,7 +1,16 @@
 @extends('layouts.app')
-
+<style>
+        .slider{
+            margin-top: -80px;
+        }
+    </style>
 @section('content')
+<section class="slider">
+    <div class="profright"></div>
+
     <div class="container sergiFix">
+        <br>
+        <br>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -49,7 +58,11 @@
             </div>
         </div>
     </div>
-
+    </section>
+    <section class="bg-02">
+        <div class="leftbg"></div>
+        <div class="rightbg"></div>
+        <div class="rightbg2"></div>
     @if (count($ordered_items) > 0)
         <section class="bg-04" id="our-menu">
             <div class="container">
@@ -74,7 +87,7 @@
                 </div>
             </div>
         </section>
-
+    </section>
     @endif
 
     @if (count($sub_chefs) > 0)
@@ -98,5 +111,7 @@
                 </div>
             </div>
         </section>
+
+
     @endif
 @endsection
