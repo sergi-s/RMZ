@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2021 at 03:21 PM
+-- Generation Time: Sep 05, 2021 at 11:20 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -43,7 +43,10 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Fruits', '2021-09-03 09:38:08', '2021-09-03 09:38:08'),
 (3, 'Vegetables', '2021-09-03 09:38:08', '2021-09-03 09:38:08'),
 (4, 'Dairy', '2021-09-03 09:38:08', '2021-09-03 09:38:08'),
-(7, 'Protien', '2021-09-03 14:21:08', '2021-09-03 14:21:08');
+(7, 'Protien', '2021-09-03 14:21:08', '2021-09-03 14:21:08'),
+(8, 'Fish', '2021-09-05 17:03:59', '2021-09-05 17:03:59'),
+(9, 'Cheese', '2021-09-05 17:04:07', '2021-09-05 17:04:07'),
+(10, 'See food', '2021-09-05 17:04:18', '2021-09-05 17:04:18');
 
 -- --------------------------------------------------------
 
@@ -68,7 +71,8 @@ CREATE TABLE `chef_profiles` (
 
 INSERT INTO `chef_profiles` (`id`, `user_id`, `years_of_xp`, `license`, `isVIP`, `approved`, `created_at`, `updated_at`) VALUES
 (102, 102, 22, '/uploads/1630160496.pdf', 0, 1, '2021-09-03 09:38:59', '2021-09-03 09:38:59'),
-(103, 103, 50, '/uploads/CVs/1630678704.pdf', 0, 1, '2021-09-03 12:18:24', '2021-09-03 12:19:21');
+(103, 103, 50, '/uploads/CVs/1630678704.pdf', 0, 1, '2021-09-03 12:18:24', '2021-09-03 12:19:21'),
+(106, 106, 22, '/uploads/CVs/1630867891.pdf', 0, 0, '2021-09-05 16:51:31', '2021-09-05 17:09:12');
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,8 @@ INSERT INTO `meals` (`id`, `chef_id`, `category_id`, `price`, `name`, `descripti
 (3, 102, 1, 1000, 'chicken', 'Chicken', '1630690770.jpg', '', '2021-09-03 15:39:30', '2021-09-03 15:39:30'),
 (4, 102, 1, 100, 'sushi', 'sushi discription', '1630755095.jpg', '', '2021-09-04 09:31:35', '2021-09-04 09:31:35'),
 (5, 102, 1, 100, 'kinna', 'kinna meat', '1630755264.jpg', '', '2021-09-04 09:34:24', '2021-09-04 09:34:24'),
-(6, 102, 3, 100, 'Potato', 'Potato Description', '1630760392.jpg', '', '2021-09-04 10:59:52', '2021-09-04 10:59:52');
+(6, 102, 3, 100, 'Potato', 'Potato Description', '1630760392.jpg', '', '2021-09-04 10:59:52', '2021-09-04 10:59:52'),
+(7, 106, 3, 200, 'dummy box', 'box', '1630870516.png', '', '2021-09-05 17:35:16', '2021-09-05 17:35:16');
 
 -- --------------------------------------------------------
 
@@ -187,6 +192,16 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`meal_id`, `user_id`, `quantity`, `delivered`, `created_at`, `updated_at`) VALUES
+(5, 101, 1, 0, '2021-09-04 11:33:10', '2021-09-04 11:33:10'),
+(5, 106, 1, 0, '2021-09-05 17:29:51', '2021-09-05 17:29:51'),
+(7, 102, 1, 0, '2021-09-05 17:36:24', '2021-09-05 17:36:24'),
+(3, 101, 1, 0, '2021-09-05 18:10:14', '2021-09-05 18:10:14');
 
 -- --------------------------------------------------------
 
@@ -266,10 +281,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `isAdmin`, `isVIP`, `isChef`, `avatar`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (101, 'Sergi', 'sergisamirboules@gmail.com', NULL, 1, 0, 0, '1630669532.jpg', '$2y$10$MggCsS9mUYXxUVyJxQUco.CzW0hCJvO01FPqzq20A9tccVhldbou2', NULL, '2021-09-03 09:38:52', '2021-09-03 09:38:52'),
-(102, 'Karim', 'karim@gmail.com', NULL, 0, 0, 1, '1630668744.jpg', '$2y$10$VA2RdDjb9NN9UTT.zvfcq.UNa4YmXtD8/XQeVgUH4/xlbYZq/ATmS', NULL, '2021-09-03 09:38:52', '2021-09-03 09:38:52'),
+(102, 'Karim', 'karim@gmail.com', NULL, 0, 1, 1, '1630668744.jpg', '$2y$10$VA2RdDjb9NN9UTT.zvfcq.UNa4YmXtD8/XQeVgUH4/xlbYZq/ATmS', NULL, '2021-09-03 09:38:52', '2021-09-05 17:36:04'),
 (103, 'Reda', 'reda@gmail.com', NULL, 0, 1, 1, 'user.png', '$2y$10$VA2RdDjb9NN9UTT.zvfcq.UNa4YmXtD8/XQeVgUH4/xlbYZq/ATmS', NULL, '2021-09-03 09:38:53', '2021-09-03 12:19:21'),
 (104, 'Reda', 'reda2@gmail.com', NULL, 0, 0, 0, '1630669532.jpg', '$2y$10$/O2OQqSiEiMN4IC9/Qp2BeW.1l6RyKfabKQzZFOj2zXCcdQjJ7Nri', NULL, '2021-09-03 09:45:33', '2021-09-03 09:45:33'),
-(105, 'sandra', 'sandra@gmail.com', NULL, 0, 0, 0, 'user.png', '$2y$10$o.Xr/ujn6GNKVAXgH58FduxipLQi.x5svuJfj0xIug2Rs6HkpWvKK', NULL, '2021-09-03 16:23:16', '2021-09-03 16:23:16');
+(105, 'sandra', 'sandra@gmail.com', NULL, 0, 0, 0, 'user.png', '$2y$10$o.Xr/ujn6GNKVAXgH58FduxipLQi.x5svuJfj0xIug2Rs6HkpWvKK', NULL, '2021-09-03 16:23:16', '2021-09-03 16:23:16'),
+(106, 'chef', 'chef@gmail.com', NULL, 0, 0, 0, 'user.png', '$2y$10$bhIjNJ1JKZnDBorkKJ4b5u9NKD3rp7CfLNEEknAdbD94uKFglIUtG', NULL, '2021-09-05 16:51:13', '2021-09-05 17:09:12');
 
 --
 -- Indexes for dumped tables
@@ -351,13 +367,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `chef_profiles`
 --
 ALTER TABLE `chef_profiles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -375,7 +391,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `meals`
 --
 ALTER TABLE `meals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -399,7 +415,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- Constraints for dumped tables

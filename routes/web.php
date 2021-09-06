@@ -31,6 +31,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\UserController::class, 'adminDashboard'])->name("admin");
 
     Route::get('approveChef/{id}', [App\Http\Controllers\UserController::class, 'approveChef'])->where('id', '[0-9]+');
+    Route::get('approveVIPChef/{id}', [App\Http\Controllers\UserController::class, 'approveVIPChef'])->where('id', '[0-9]+');
     Route::get('unapproveChef/{id}', [App\Http\Controllers\UserController::class, 'denyChef'])->where('id', '[0-9]+');
 
     Route::post('/category', [App\Http\Controllers\MealsController::class, 'store2'])->name('category.store');
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'chef'])->group(function () {
     Route::get('/chef', [App\Http\Controllers\MealsController::class, 'create'])->name('chefDashboard');
     Route::post('/post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
     Route::delete('/post/{id}', [App\Http\Controllers\MealsController::class, 'delete'])->name('post.delete')->where('id', '[0-9]+');
+    Route::get('/myorders', [App\Http\Controllers\MealsController::class, 'myorders'])->name('myorders');
 });
 
 //? All Routes for VIP

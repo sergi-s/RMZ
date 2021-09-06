@@ -9,17 +9,23 @@
                 </figure>
                 <div class="sentence">
                     <h3>
-                        {{ $meal->name }}<span>${{ $meal->price }}</span>
+                        Name: {{ $meal->name }}<span>${{ $meal->price }}</span>
                     </h3>
                     <h3>
-                        <a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a>
+                        <a href="chef/{{ $meal->chef->id }}"> By: {{ $meal->chef->name }}</a>
                     </h3>
-                    <h6>{{ $meal->category->name }}</h6>
+                    <h6>Category: {{ $meal->category->name }}</h6> <br>
+
+                    @if ($meal->quantity)
+                        <h6>
+                            Quantity: {{ $meal->quantity }}
+                        </h6>
+                    @endif
                     <p>
                         @if (strlen($meal->description) > 35)
-                            {{ substr($meal->description, 0, 35) }} ...etc
+                            Description: {{ substr($meal->description, 0, 35) }} ...etc
                         @else
-                            {{ $meal->description }}
+                            Description: {{ $meal->description }}
                         @endif
                     </p>
                 </div>
