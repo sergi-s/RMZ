@@ -12,6 +12,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @auth
+
+        <script>
+            window.user = {
+                id: {{ Auth::user()->id }},
+                name: "{{ Auth::user()->name }}"
+            };
+            window.csrfToken = "{{ csrf_token() }}";
+        </script>
+    @endauth
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,7 +50,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="container">
         <header>
             <div class="main-nav">
                 <div class="container">
