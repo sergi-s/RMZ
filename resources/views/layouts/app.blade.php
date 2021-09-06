@@ -57,7 +57,7 @@
                                 <ul>
                                     <li><a href="{{ route('aboutus') }}">About Us</a></li>
                                     <li><a href="{{ route('home') }}#our-menu">Our Meals</a></li>
-                                    <li><a href="#blog">News</a></li>
+                                    <li><a href="{{route('home')}}#blog">News</a></li>
                                     <li><a href="{{ route('aboutus') }}">Contact Us</a></li>
                                     <li><a href="{{ route('chefs') }}">Chefs</a></li>
                                 </ul>
@@ -121,7 +121,7 @@
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                                         >
-                                        {{ Auth::user()->name }}
+                                        <b style="font-size: 12px; color:black">{{ Auth::user()->name }}</b>
 
                                         @if (Auth::user()->avatar)
                                             <img class="image rounded-circle"
@@ -133,6 +133,9 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{route('profile')}}">
                                             {{ __('Profile') }}
+                                        </a>
+                                    <a class="dropdown-item" href="{{route('sub_chefs')}}">
+                                            {{ __('Subscriptions') }}
                                         </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
