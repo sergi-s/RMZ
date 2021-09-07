@@ -4,9 +4,9 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 @section('content')
-
-    <!------ Include the above in your HEAD tag ---------->
-
+  <section class="slider">
+      <div class="vipleft"></div>
+      <div class="vipright"></div>
     <div class="container" style="padding-top: 100px; align-items: center;">
         <div class="row">
             <div class="col-xs-12 ">
@@ -25,7 +25,7 @@
                                     <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
                                         required autofocus />
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                </div>
+                                </div>++++
                             </div>
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
@@ -66,5 +66,5 @@
             </div>
         </div>
     </div>
-
+    </section>
 @endsection
