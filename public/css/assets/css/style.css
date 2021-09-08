@@ -250,6 +250,27 @@ header .menu.active::before {
     position: relative;
     padding: 0;
 }
+.slider .vipleft{
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+    width: 225px;
+    height: 225px;
+    background: url(../images/download.jpg);
+    background-repeat: no-repeat;
+   /* transform: rotate(30deg); */
+}
+.slider .vipright{
+    position: absolute;
+    background: url(../images/271694.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-position: right; */
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
 .slider .leftimage{
     position: absolute;
     left: 100px;
