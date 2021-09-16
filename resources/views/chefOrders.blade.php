@@ -13,7 +13,7 @@
                 <div class="row sergiFix">
                     <div class="col-12">
                         <div class="row">
-                            @include('layouts.displayMeals', ['meals' => $orders,"delete"=>False])
+                            @include('layouts.displayMeals', ['meals' => $orders,"delete"=>False,"ordered"=>False])
                         </div>
                     </div>
                 </div>

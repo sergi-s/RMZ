@@ -12,18 +12,18 @@
                 <div class="card">
                     <div class="card-header">{{ $meal->chef->name }}</div>
 
-                    @if($meal->video)
-                    <video width="750" height="340" controls>
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp4">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mov">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp3">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/wmv">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mpg">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/avi">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/webm">
-                        <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/ogg">
-                        Your browser does not support the video tag.
-                    </video>
+                    @if ($meal->video)
+                        <video width="750" height="340" controls>
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp4">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mov">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mp3">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/wmv">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/mpg">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/avi">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/webm">
+                            <source src="{{ asset('/uploads/vids/' . $meal->video) }}" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
                     @endif
                     <div class="card-body">
                         <table>
@@ -59,14 +59,16 @@
                                 <th>Description:</th>
                                 <td>{{ $meal->description }}</td>
                             </tr>
-                            <tr>
-                                <th>Add to cart:</th>
-                                <td>
-                                    <p class="btn-holder"><a href="{{ route('add.to.cart', $meal->id) }}"
-                                            class="btn btn-warning btn-block text-center" role="button">Add to
-                                            cart</a> </p>
-                                </td>
-                            </tr>
+                            @if ($meal->chef->id != Auth::user()->id)
+                                <tr>
+                                    <th>Add to cart:</th>
+                                    <td>
+                                        <p class="btn-holder"><a href="{{ route('add.to.cart', $meal->id) }}"
+                                                class="btn btn-warning btn-block text-center" role="button">Add to
+                                                cart</a> </p>
+                                    </td>
+                                </tr>
+                            @endif
 
                         </table>
                     </div>

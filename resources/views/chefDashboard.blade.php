@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        @include('layouts.displayMeals', ['meals' => $meals,"delete"=>True])
+                        @include('layouts.displayMeals', ['meals' => $meals,"delete"=>True,"ordered"=>False])
                     </div>
                 </div>
             </div>

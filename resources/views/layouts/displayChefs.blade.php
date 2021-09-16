@@ -8,7 +8,7 @@
             <div class="team-name">
                 <h2><a href="chef/{{ $chef->id }}">{{ $chef->name }}</a></h2>
                 @if ($chef->chef->isVIP)
-                    <h2 style="color: orange">VIP</h2>
+                    <h2 style="color: orange">VIP Chef</h2>
                 @endif<br>
                 <b>{{ $chef->chef->years_of_xp }} yeas of experience</b>
             </div>

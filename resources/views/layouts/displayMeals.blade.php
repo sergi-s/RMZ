@@ -9,26 +9,39 @@
                 </figure>
                 <div class="sentence">
                     <h3>
-                        Name: {{ $meal->name }}<span>${{ $meal->price }}</span>
+                        <strong>{{ $meal->name }}</strong><span>${{ $meal->price }} <br>
+                            @if ($meal->chef->chef->isVIP) VIP Meal @endif</span>
+
                     </h3>
                     <h3>
                         <a href="chef/{{ $meal->chef->id }}"> By: {{ $meal->chef->name }}</a>
                         @if (Auth::id() == $meal->chef->id) <span>You</span> @endif
                     </h3>
-                    <h6>Category: {{ $meal->category->name }}</h6> <br>
+                    <h6>Category: <strong>{{ $meal->category->name }}</strong>
+                    </h6> <br>
 
                     @if ($meal->quantity)
+                        Quantity:
+                        <strong>
+                            <h6>
+                                {{ $meal->quantity }}
+                            </h6>
+                    @endif
+                    </strong>
+                    <p>
+                        Description:
+                        @if (strlen($meal->description) > 35)
+                            {{ substr($meal->description, 0, 35) }} ...etc
+                        @else
+                            {{ $meal->description }}
+                        @endif
+
+                    </p>
+                    @if ($ordered)
                         <h6>
-                            Quantity: {{ $meal->quantity }}
+                            Orderd <strong>{{ date('d-m-Y', strtotime($meal->updated_at)) }}</strong>
                         </h6>
                     @endif
-                    <p>
-                        @if (strlen($meal->description) > 35)
-                            Description: {{ substr($meal->description, 0, 35) }} ...etc
-                        @else
-                            Description: {{ $meal->description }}
-                        @endif
-                    </p>
                 </div>
                 <div class="rate-box">
                     @if (Auth::id() != $meal->chef->id)

@@ -1,92 +1,94 @@
 @extends('layouts.app')
 <style>
-        .slider{
-            margin-top: -80px;
-        }
-    </style>
+    .slider {
+        margin-top: -80px;
+    }
+
+</style>
 @section('content')
-<section class="slider">
-    <div class="profright"></div>
+    <section class="slider">
+        <div class="profright"></div>
 
-    <div class="container sergiFix">
-        <br>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header" style="display: flex; background-color: #ff9106;">
-                        <img class="image rounded-circle" src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}"
-                            alt="profile_image"
-                            style="width: 100px;height: 100px; padding: 5px; margin: 0px; border-radius: 50px; ">
-                        <h1 style="padding-top: 10px; padding-left: 20px;">Hello {{ Auth::user()->name }}@if (Auth::user()->avatar)
-                        </h1>
+        <div class="container sergiFix">
+            <br>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" style="display: flex; background-color: #ff9106;">
+                            <img class="image rounded-circle" src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}"
+                                alt="profile_image"
+                                style="width: 100px;height: 100px; padding: 5px; margin: 0px; border-radius: 50px; ">
+                            <h1 style="padding-top: 10px; padding-left: 20px;">Hello {{ Auth::user()->name }}@if (Auth::user()->avatar)
+                            </h1>
 
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="card-body">
-                        <table class="table">
-                            <tr>
-                                <th>
-                                    Email
-                                </th>
-                                <td>{{ Auth::user()->email }}</td>
-                            </tr>
-                            <tr>
-                                <th>Role</th>
-                                <td>
-                                    @if (Auth::user()->isChef)
-                                        @if (Auth::user()->chef->isVIP)
-                                            VIP Chef
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <td>{{ Auth::user()->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Role</th>
+                                    <td>
+                                        @if (Auth::user()->isChef)
+                                            @if (Auth::user()->chef->isVIP)
+                                                VIP Chef
+                                            @else
+                                                Chef
+                                            @endif
+                                        @elseif(Auth::user()->isAdmin)
+                                            Admin
                                         @else
-                                            Chef
+                                            User
                                         @endif
-                                    @elseif(Auth::user()->isAdmin)
-                                        Admin
-                                    @else
-                                        User
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Joined At</th>
-                                <td>{{ date('d-m-Y', strtotime(Auth::user()->created_at)) }}</td>
-                            </tr>
-                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Joined At</th>
+                                    <td>{{ date('d-m-Y', strtotime(Auth::user()->created_at)) }}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <section class="bg-02">
         <div class="leftbg"></div>
         <div class="rightbg"></div>
         <div class="rightbg2"></div>
-    @if (count($ordered_items) > 0)
-        <section class="bg-04" id="our-menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="heading">
-                            <span>Oredred Items</span>
-                            <h2>Your order is on it's way</h2>
-                            <p>
-                                We have a great variety of the best popular
-                                Chefs around the world that anyone could
-                                imagine. Our Chefs are very skilled and talented
-                            </p>
-                        </div>
+        @if (count($ordered_items) > 0)
+            <section class="bg-04" id="our-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading">
+                                <span>Oredred Items</span>
+                                <h2>Your order is on it's way</h2>
+                                <p>
+                                    We have a great variety of the best popular
+                                    Chefs around the world that anyone could
+                                    imagine. Our Chefs are very skilled and talented
+                                </p>
+                            </div>
 
-                    </div>
-                    <div class="col-12">
-                        <div class="row">
-                            @include('layouts.displayMeals', ['meals' => $ordered_items,"delete"=>False])
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                @include('layouts.displayMeals', ['meals' =>
+                                $ordered_items,"delete"=>False,"ordered"=>true])
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
     </section>
     @endif
 

@@ -11,7 +11,7 @@
                         yeas of experience: {{ $chef->chef->years_of_xp }} <br>
 
                         @if ($chef->isVIP)
-                            VIP
+                            VIP Chef
                         @endif<br>
                         @if (!$subscribed)
                             <a href="../subscribe/{{ $chef->id }}">SUBSCRIBE</a>

@@ -119,3 +119,8 @@ Route::middleware(['auth'])->group(function () {
 //DONE: 9- Add image attribute for meals and chefs, meals
 //TODO: 10 update readme.md (add info about build in users)
 //DONE: 11- Add video attribute for meals and chefs
+
+//DONE: date 3la el meal(track your order),
+//DONE: 4il el name mn meal
+//DONE: fix chef can order his meals
+//TODO: Chefs f 7eta wl VIP chefs f 7eta
