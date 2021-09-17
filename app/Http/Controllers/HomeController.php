@@ -7,11 +7,27 @@ use App\Models\ChefProfile;
 use App\Models\User;
 use App\Models\Meal;
 use Illuminate\Http\Request;
+use \Pusher\Pusher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function authenticate(Request $request)
+    {
+        $socketId = $request->socket_id;
+        $channelName = $request->channel_name;
+
+        $pusher = new Pusher('83c9614fa128f8d6027a', '21cc55200cb583256bf2', '497574', [
+            'cluster' => 'ap2',
+            'encrypted' => true
+        ]);
+
+        $presence_data = ['name' => Auth::user()->name];
+        $key = $pusher->presenceAuth($channelName, $socketId, Auth::user()->id, $presence_data);
+
+        return response($key);
+    }
     /**
      * Create a new controller instance.
      *

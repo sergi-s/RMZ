@@ -97,6 +97,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
     Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
+
+
+
+    Route::post('/pusher/auth', [App\Http\Controllers\HomeController::class, "authenticate"]);
+    Route::get("/testRTC", function () {
+        return view("homew");
+    });
 });
 
 
