@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Events\NewNotification;
 
 class UserController extends Controller
 {
@@ -108,12 +109,19 @@ class UserController extends Controller
     public function approveChef($id)
     {
         $user  = User::find($id);
-        $user->isChef = True;
-        $user->save();
+        // $user->isChef = True;
+        // $user->save();
 
-        $chef = ChefProfile::find($id);
-        $chef->approved = True;
-        $chef->save();
+        // $chef = ChefProfile::find($id);
+        // $chef->approved = True;
+        // $chef->save();
+        $data = [
+            "chef_id" => $id,
+            "admin_id" => Auth::id(),
+            "type" => false,
+        ];
+        $user->notify(new NewNotification($data));
+        // event(new NewNotification($data));
         //TODO: push notification to chef
         return redirect(route("admin"));
     }

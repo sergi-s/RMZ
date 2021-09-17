@@ -13,6 +13,7 @@
                     </h3>
                     <h3>
                         <a href="chef/{{ $meal->chef->id }}"> By: {{ $meal->chef->name }}</a>
+                        @if (Auth::id() == $meal->chef->id) <span>You</span> @endif
                     </h3>
                     <h6>Category: {{ $meal->category->name }}</h6> <br>
 
@@ -29,12 +30,15 @@
                         @endif
                     </p>
                 </div>
+
                 <div class="rate-box">
-                    <div class="plus">
-                        <a href="{{ route('add.to.cart', $meal->id) }}" class="btn btn-warning btn-block text-center"
-                            role="button">
-                            <span class="flaticon-plus"></span></a>
-                    </div>
+                    @if (Auth::id() != $meal->chef->id)
+                        <div class="plus">
+                            <a href="{{ route('add.to.cart', $meal->id) }}"
+                                class="btn btn-warning btn-block text-center" role="button">
+                                <span class="flaticon-plus"></span></a>
+                        </div>
+                    @endif
 
                     @if ($delete)
                         <div class="plus">

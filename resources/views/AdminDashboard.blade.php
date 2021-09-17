@@ -6,64 +6,43 @@
 
 </style>
 @section('content')
-<section class="slider">
-      <div class="tomato"></div>
-      <div class="leftimage"></div>
-      <br>
-      <br>
-    @if (count($unapproved_apps) > 0)
-        <div class="container sergiFix">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Unapproved Chefs</div>
-
-                        @forelse ($unapproved_apps as $unapproved_app)
-                            <div class="card-body">
-                                Name: {{ $unapproved_app->user->name }} <br>
-                                Work experience: {{ $unapproved_app->years_of_xp }} years <br>
-                                <a href="{{ $unapproved_app->license }}" target="__blank">License</a><br>
-<<<<<<< HEAD
-                                <a href="approveChef/{{ $unapproved_app->id }}" s>Approve</a> <br>
-                                <a href="unapproveChef/{{ $unapproved_app->id }}" s>UnApprove (delete)</a> <br>
-=======
-                                <a href="approveChef/{{ $unapproved_app->id }}" s>Approve</a><br>
-                                <a href="approveVIPChef/{{ $unapproved_app->id }}" s>approve As VIP Chef</a><br>
-                                <a href="unapproveChef/{{ $unapproved_app->id }}" s>UnApprove (delete)</a><br>
->>>>>>> 984afc84a814c487dab052d2a4557a48da9d6856
-                            </div>
-                        @empty
-                            <div class="header">No unapproved applications</div>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-<<<<<<< HEAD
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-=======
-
-    <section class="slider sergiFix">
+    <section class="slider">
         <div class="tomato"></div>
         <div class="leftimage"></div>
         <br>
         <br>
-        <div class="container sergiFix">
+        @if (count($unapproved_apps) > 0)
+            <div class="container sergiFix">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">Unapproved Chefs</div>
+
+                            @forelse ($unapproved_apps as $unapproved_app)
+                                <div class="card-body">
+                                    Name: {{ $unapproved_app->user->name }} <br>
+                                    Work experience: {{ $unapproved_app->years_of_xp }} years <br>
+                                    <a href="{{ $unapproved_app->license }}" target="__blank">License</a><br>
+                                    <a href="approveChef/{{ $unapproved_app->id }}" s>Approve</a><br>
+                                    <a href="approveVIPChef/{{ $unapproved_app->id }}" s>approve As VIP Chef</a><br>
+                                    <a href="unapproveChef/{{ $unapproved_app->id }}" s>UnApprove (delete)</a><br>
+                                </div>
+                            @empty
+                                <div class="header">No unapproved applications</div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif<br>
+        <br>
+        <br>
+        <br>
+        <div class="container ">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
->>>>>>> 984afc84a814c487dab052d2a4557a48da9d6856
-
                             <form method="post" action="{{ route('category.store') }}">
                                 <div class="form-group">
                                     @csrf
