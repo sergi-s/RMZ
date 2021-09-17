@@ -35,23 +35,51 @@ class MealsController extends Controller
         return view("Meal", ['meal' => Meal::find($id)]);
     }
 
+    /**
+     * Chef Dashboard, get number of orders, see/delete his meals,
+     *
+     * @return View
+     */
     public function create()
     {
+        $total = 0;
+        foreach (Auth::user()->getMeals as $key => $value) {
+            if (count($value->ordered_by) > 0) {
+                $total += count($value->ordered_by);
+            }
+        }
+
         $cats = Category::all();
-        return view('chefDashboard', ["cats" => $cats, 'meals' => auth::user()->getMeals]);
+        return view('chefDashboard', ["cats" => $cats, 'meals' => auth::user()->getMeals, "nOrders" => $total]);
     }
 
+    /**
+     * Chef Removes a Meal
+     *
+     * @return response()
+     */
     public function delete($id)
     {
         Meal::where('id', $id)->firstorfail()->delete();
         return redirect(route("chefDashboard"));
     }
+
+    /**
+     * Admin Removes a category
+     *
+     * @return response()
+     */
     public function delete2($id)
     {
         Category::where('id', $id)->firstorfail()->delete();
         return redirect(route("admin"));
     }
 
+    /**
+     * Chef adds a new Meal
+     *
+     * @return response()
+     */
     public function store(Request $request)
     {
 
@@ -94,6 +122,12 @@ class MealsController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Admin adds new Category
+     *
+     * @return response()
+     */
     public function store2(Request $request)
     {
 
@@ -116,7 +150,7 @@ class MealsController extends Controller
         return redirect()->back();
     }
     /**
-     * Write code on Method
+     * the cart page 
      *
      * @return response()
      */
@@ -124,8 +158,9 @@ class MealsController extends Controller
     {
         return view('cart');
     }
+
     /**
-     * Write code on Method
+     * Add elements to Shopping cart
      *
      * @return response()
      */
@@ -158,7 +193,7 @@ class MealsController extends Controller
     }
 
     /**
-     * Write code on Method
+     * Update quantity of elements (Not used)
      *
      * @return response()
      */
@@ -173,7 +208,7 @@ class MealsController extends Controller
     }
 
     /**
-     * Write code on Method
+     * Remove element for shopping Cart
      *
      * @return response()
      */
@@ -189,6 +224,12 @@ class MealsController extends Controller
             return back();
         }
     }
+
+    /**
+     * By Order, dummy payment
+     *
+     * @return response()
+     */
     public function checkout()
     {
         $cart = session()->get('cart');
@@ -199,5 +240,21 @@ class MealsController extends Controller
         }
         session()->forget('cart');
         return redirect(route("home"));
+    }
+    /**
+     * Display count of users that oredered all meals for this chef
+     * 
+     * @return 
+     */
+    public function myorders()
+    {
+        $work = [];
+        foreach (Auth::user()->getMeals as $key => $value) {
+            if (count($value->ordered_by) > 0) {
+                $value->quantity = count($value->ordered_by);
+                array_push($work, $value);
+            }
+        }
+        return view("chefOrders", ["orders" => $work]);
     }
 }

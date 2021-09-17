@@ -37,8 +37,12 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-
+    
+    /**
+     * ‘User Subscribe to a certain Chef
+     *
+     * @return View
+     */
     public function sub_chefs()
     {
         $retArr = [];
@@ -49,6 +53,11 @@ class HomeController extends Controller
         return view("Allchefs", ["Title" => "Subscriptions", "chefs" => $retArr]);
     }
 
+    /**
+     * VIP form page
+     *
+     * @return VIP
+     */
     public function vipform()
     {
         $user = Auth::user();
@@ -60,6 +69,12 @@ class HomeController extends Controller
         }
         return view("vipform", ['user' => $user]);
     }
+    
+    /**
+     * apply for Chef page 
+     *
+     * @return response()
+     */
     public function chefform()
     {
         $user = Auth::user();

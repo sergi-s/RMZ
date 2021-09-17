@@ -32,6 +32,10 @@
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> --}}
 
     {{-- for icons --}}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {{-- Jquery --}}
@@ -67,11 +71,50 @@
                                 <ul>
                                     <li><a href="{{ route('aboutus') }}">About Us</a></li>
                                     <li><a href="{{ route('home') }}#our-menu">Our Meals</a></li>
-                                    <li><a href="#blog">News</a></li>
+                                    <li><a href="{{ route('home') }}#blog">News</a></li>
                                     <li><a href="{{ route('aboutus') }}">Contact Us</a></li>
                                     <li><a href="{{ route('chefs') }}">Chefs</a></li>
                                 </ul>
                             </div>
+                            @auth
+                                <li class="dropdown dropdown-notification nav-item  dropdown-notifications">
+                                    <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                                        <i class="fa fa-bell"> </i>
+                                        <span
+                                            class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow notif-count"
+                                            data-count="9">9</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                        <li class="dropdown-menu-header">
+                                            <h6 class="dropdown-header m-0 text-center">
+                                                <span class="grey darken-2 text-center"> Messages</span>
+                                            </h6>
+                                        </li>
+                                        <li class="scrollable-container ps-container ps-active-y media-list w-100">
+                                            <a href="">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h6 class="media-heading text-right ">Title </h6>
+                                                        <p class="notification-text font-small-3 text-muted text-right">
+                                                            body</p>
+                                                        <small style="direction: ltr;">
+                                                            <p class=" text-muted text-right" style="direction: ltr;">
+                                                                20-05-2020 - 06:00 pm
+                                                            </p>
+                                                            <br>
+
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </li>
+                                        <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"
+                                                href=""> جميع الاشعارات </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endauth
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
@@ -130,7 +173,7 @@
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                        <b style="font-size: 12px; color:black">{{ Auth::user()->name }}</b>
 
                                         @if (Auth::user()->avatar)
                                             <img class="image rounded-circle"
@@ -138,10 +181,14 @@
                                                 alt="profile_image"
                                                 style="width: 50px;height: 50px; padding: 5px; margin: 0px; ">
                                         @endif
-
                                     </a>
-
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                            {{ __('Profile') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('sub_chefs') }}">
+                                            {{ __('Subscriptions') }}
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
@@ -217,6 +264,16 @@
         </main>
     </div>
     @include("layouts.footer")
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+            cluster: 'mt1'
+        });
+    </script>
+    <script src="{{ asset('js/pusherNotification.js') }}"></script>
 </body>
 
 <script src="{{ asset('css/assets/js/jquery-3.2.1.min.js') }}"></script>

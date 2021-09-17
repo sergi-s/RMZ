@@ -8,6 +8,11 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
+    /**
+     * Add a comment on a specific Meal Post
+     * 
+     * @return void
+     */
     public function store(Request $request)
     {
         $comment = new Comment;
@@ -17,12 +22,17 @@ class CommentController extends Controller
         $comment->user()->associate($request->user());
 
         $meal = Meal::find($request->meal_id);
-        
+
         $meal->comments()->save($comment);
 
         return back();
     }
 
+    /**
+     * Reply on a comment or on onther reply, on a specific Meal Post
+     * 
+     * @return void
+     */
     public function replyStore(Request $request)
     {
         $reply = new Comment();

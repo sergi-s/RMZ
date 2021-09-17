@@ -9,26 +9,36 @@
                 </figure>
                 <div class="sentence">
                     <h3>
-                        {{ $meal->name }}<span>${{ $meal->price }}</span>
+                        Name: {{ $meal->name }}<span>${{ $meal->price }}</span>
                     </h3>
                     <h3>
-                        <a href="chef/{{ $meal->chef->id }}"> {{ $meal->chef->name }}</a>
+                        <a href="chef/{{ $meal->chef->id }}"> By: {{ $meal->chef->name }}</a>
+                        @if (Auth::id() == $meal->chef->id) <span>You</span> @endif
                     </h3>
-                    <h6>{{ $meal->category->name }}</h6>
+                    <h6>Category: {{ $meal->category->name }}</h6> <br>
+
+                    @if ($meal->quantity)
+                        <h6>
+                            Quantity: {{ $meal->quantity }}
+                        </h6>
+                    @endif
                     <p>
                         @if (strlen($meal->description) > 35)
-                            {{ substr($meal->description, 0, 35) }} ...etc
+                            Description: {{ substr($meal->description, 0, 35) }} ...etc
                         @else
-                            {{ $meal->description }}
+                            Description: {{ $meal->description }}
                         @endif
                     </p>
                 </div>
+
                 <div class="rate-box">
-                    <div class="plus">
-                        <a href="{{ route('add.to.cart', $meal->id) }}" class="btn btn-warning btn-block text-center"
-                            role="button">
-                            <span class="flaticon-plus"></span></a>
-                    </div>
+                    @if (Auth::id() != $meal->chef->id)
+                        <div class="plus">
+                            <a href="{{ route('add.to.cart', $meal->id) }}"
+                                class="btn btn-warning btn-block text-center" role="button">
+                                <span class="flaticon-plus"></span></a>
+                        </div>
+                    @endif
 
                     @if ($delete)
                         <div class="plus">

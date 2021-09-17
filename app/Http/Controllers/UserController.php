@@ -9,12 +9,15 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Events\NewNotification;
 
 class UserController extends Controller
 {
     /**
-     * transfer a user to a chef
+     * Profile page, with oredered Items (if any).
+     * Profile page, with subscribed chefs (if any).
      *
+     * @return View
      */
     public function index(Request $request)
     {
@@ -29,6 +32,11 @@ class UserController extends Controller
 
         return view("Profile", ["sub_chefs" => $retArr, "ordered_items" => $Items]);
     }
+    /**
+     * Subscribe a user to a chef.
+     *
+     * @return void
+     */
     public function subscribe($id)
     {
         $user_id = Auth::user()->id;
@@ -53,6 +61,11 @@ class UserController extends Controller
 
         return "Internal server error";
     }
+    /**
+     * application form for being a chef
+     *
+     * @return void
+     */
     public function applyForChef(Request $request)
     {
         $request->validate([
@@ -76,13 +89,48 @@ class UserController extends Controller
         $user->chef()->save($chef);
         return back()->with('success', 'File has uploaded to the database.')->with('file', $fileName);
     }
+    /**
+     * admin dashboard, approve chef (vip,normal)
+     * cr(u)d categories
+     *
+     * @return View
+     */
     public function adminDashboard()
     {
         $unapproved = ChefProfile::where("approved", 0)->get();
         $cats = Category::all();
         return view("AdminDashboard", ['unapproved_apps' => $unapproved, "cats" => $cats]);
     }
+    /**
+     * approve a chef normal.
+     *
+     * @return void
+     */
     public function approveChef($id)
+    {
+        $user  = User::find($id);
+        // $user->isChef = True;
+        // $user->save();
+
+        // $chef = ChefProfile::find($id);
+        // $chef->approved = True;
+        // $chef->save();
+        $data = [
+            "chef_id" => $id,
+            "admin_id" => Auth::id(),
+            "type" => false,
+        ];
+        $user->notify(new NewNotification($data));
+        // event(new NewNotification($data));
+        //TODO: push notification to chef
+        return redirect(route("admin"));
+    }
+    /**
+     * approve a chef as VIP
+     *
+     * @return void
+     */
+    public function approveVIPChef($id)
     {
         $user  = User::find($id);
         $user->isChef = True;
@@ -90,10 +138,16 @@ class UserController extends Controller
 
         $chef = ChefProfile::find($id);
         $chef->approved = True;
+        $chef->isVIP = True;
         $chef->save();
         //TODO: push notification to chef
         return redirect(route("admin"));
     }
+    /**
+     * Deny chef/ delete application.
+     *
+     * @return void
+     */
     public function denyChef($id)
     {
         $user  = User::find($id);
@@ -104,12 +158,22 @@ class UserController extends Controller
         return redirect(route("admin"));
     }
 
+    /**
+     * upgrade a chef to VIP
+     *
+     * @return void
+     */
     public function vipChef($id)
     {
         $chef = ChefProfile::find($id);
         $chef->isVIP = True;
         $chef->save();
     }
+    /**
+     * upgrade a User to VIP user
+     *
+     * @return void
+     */
     public function vipmember()
     {
         $user  = User::find(Auth::user()->id);
