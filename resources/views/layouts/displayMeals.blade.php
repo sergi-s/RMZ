@@ -6,11 +6,13 @@
                     <a href="/meal/{{ $meal->id }}">
                         <img src="{{ asset('/uploads/meals/' . $meal->image) }}" />
                     </a>
+
+                    @if ($meal->chef->chef->isVIP) <div class="ribbon"><span>VIP Meal</span></div> @endif
                 </figure>
                 <div class="sentence">
                     <h3>
                         <strong>{{ $meal->name }}</strong><span>${{ $meal->price }} <br>
-                            @if ($meal->chef->chef->isVIP) VIP Meal @endif</span>
+                        </span>
 
                     </h3>
                     <h3>
@@ -68,9 +70,9 @@
 
 
             </div>
+
         </div>
     </div>
-
 @empty
     <div class="container">
         <h4>No Meals Found</h4>

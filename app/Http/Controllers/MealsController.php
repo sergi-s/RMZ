@@ -40,7 +40,7 @@ class MealsController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function chefDashboard()
     {
         $total = 0;
         foreach (Auth::user()->getMeals as $key => $value) {
@@ -61,7 +61,7 @@ class MealsController extends Controller
     public function delete($id)
     {
         Meal::where('id', $id)->firstorfail()->delete();
-        return redirect(route("chefDashboard"));
+        return redirect()->route("chefDashboard")->with('info', 'Product Deleted successfully!');
     }
 
     /**
@@ -170,7 +170,7 @@ class MealsController extends Controller
         // dd($product->chef->chef->isVIP, auth::user()->isVIP, $product->chef->chef->isVIP == auth::user()->isVIP);
 
         if ($product->chef->chef->isVIP != auth::user()->isVIP) {
-            return redirect('vipform');
+            return redirect()->route('vipform')->with('warning', 'you are not a VIP user, Plz register');
         }
 
         $cart = session()->get('cart', []);

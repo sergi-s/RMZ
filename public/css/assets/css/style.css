@@ -1,9 +1,81 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap);
 
+.box {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    border: 1px solid #bbb;
+    background: #eee;
+}
+.ribbon {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+.ribbon span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: #79a70a;
+    background: linear-gradient(#9bc90d 0%, #79a70a 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px;
+    right: -21px;
+}
+.ribbon span::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #79a70a;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #79a70a;
+}
+.ribbon span::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #79a70a;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #79a70a;
+}
+.line1 {
+    background-color: #ff9106;
+    padding: 2px;
+    width: 100px;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 15px;
+    left: -25px;
+
+    font-size: 12px;
+    text-align: center;
+}
 .sergiFix {
     margin-top: 6%;
 }
-.roundimg{
+.roundimg {
     width: 100px;
     height: 100px;
     padding: 5px;
@@ -243,14 +315,14 @@ header .menu.active {
 header .menu.active::before {
     display: none;
 }
-.meshtable{
+.meshtable {
     background-color: white;
 }
 .slider {
     position: relative;
     padding: 0;
 }
-.slider .vipleft{
+.slider .vipleft {
     position: absolute;
     left: 70px;
     bottom: 60px;
@@ -258,9 +330,9 @@ header .menu.active::before {
     height: 225px;
     background: url(../images/download.jpg);
     background-repeat: no-repeat;
-   /* transform: rotate(30deg); */
+    /* transform: rotate(30deg); */
 }
-.slider .vipright{
+.slider .vipright {
     position: absolute;
     background: url(../images/271694.jpg);
     background-size: cover;
@@ -271,7 +343,7 @@ header .menu.active::before {
     top: 0;
     right: 0;
 }
-.slider .leftimage{
+.slider .leftimage {
     position: absolute;
     left: 100px;
     bottom: 10px;
@@ -281,7 +353,7 @@ header .menu.active::before {
     background-repeat: no-repeat;
     /*transform: rotate(-29deg);*/
 }
-.slider .tomato{
+.slider .tomato {
     position: absolute;
     background: url(../images/tomato.jpg);
     background-size: cover;
@@ -292,8 +364,7 @@ header .menu.active::before {
     top: 0;
     right: 0;
 }
-.slider .profright
-{
+.slider .profright {
     position: absolute;
     background: url(../images/right2.jpg);
     background-size: cover;
@@ -304,7 +375,7 @@ header .menu.active::before {
     top: 0;
     right: 0;
 }
-.slider .profleft{
+.slider .profleft {
     position: absolute;
     left: 0px;
     bottom: 0px;
@@ -313,7 +384,7 @@ header .menu.active::before {
     background: url(../images/shapes/shap-05.png);
     background-repeat: no-repeat;
     padding-top: 100px;
-   /* transform: rotate(-29deg);*/
+    /* transform: rotate(-29deg);*/
 }
 
 .slider .shape {
@@ -485,7 +556,7 @@ header .menu.active::before {
     background-repeat: no-repeat;
     transform: rotate(8deg);
 }
-.bg-02 .rightbg2{
+.bg-02 .rightbg2 {
     position: absolute;
     right: -100px;
     bottom: 10;
@@ -496,7 +567,7 @@ header .menu.active::before {
     background-repeat: no-repeat;
     transform: rotate(-30deg);
 }
-.bg-02 .leftbg{
+.bg-02 .leftbg {
     position: absolute;
     background: url(../images/onion.jpg);
     background-repeat: no-repeat;

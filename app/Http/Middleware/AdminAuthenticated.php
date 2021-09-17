@@ -20,7 +20,7 @@ class AdminAuthenticated
         if (Auth::check()) {
             // if user is not admin take him to the home page
             if (!Auth::user()->isAdmin) {
-                return redirect(route('home'));
+                return redirect()->route('home')->with('error', 'Unauthorized Access, you are not an admin');
             }
 
             // allow admin to proceed with request
@@ -28,6 +28,6 @@ class AdminAuthenticated
                 return $next($request);
             }
         }
-        return $next($request);
+        return redirect()->route('login')->with('warning', 'you are not logged in, Plz login');;
     }
 }

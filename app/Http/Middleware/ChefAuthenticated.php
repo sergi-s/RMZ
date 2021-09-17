@@ -20,7 +20,7 @@ class ChefAuthenticated
         if (Auth::check()) {
             // if user is not chef take him to The home page
             if (!Auth::user()->isChef) {
-                return redirect(route('home'));
+                return redirect()->route('chefform')->with('warning', 'you are not a chef yet, Plz register');
             }
 
             // allow admin to proceed with request
@@ -28,6 +28,6 @@ class ChefAuthenticated
                 return $next($request);
             }
         }
-        return $next($request);
+        return redirect()->route('login')->with('warning', 'you are not logged in, Plz login');
     }
 }

@@ -43,7 +43,8 @@
                                         <img class="image rounded-circle"
                                             src="{{ asset('/uploads/avatars/' . $meal->chef->avatar) }}"
                                             {{ $meal->chef->name }} alt="profile_image"
-                                            style="width: 50px;height: 50px; padding: 5px; margin: 0px; "></a></td>
+                                            style="width: 50px;height: 50px; padding: 5px; margin: 0px; ">{{ $meal->chef->name }}</a>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Category:</th>
@@ -59,7 +60,17 @@
                                 <th>Description:</th>
                                 <td>{{ $meal->description }}</td>
                             </tr>
-                            @if ($meal->chef->id != Auth::user()->id)
+                            @if (!Route::has('register') && $meal->chef->id != Auth::user()->id)
+
+                                <tr>
+                                    <th>Add to cart:</th>
+                                    <td>
+                                        <p class="btn-holder"><a href="{{ route('add.to.cart', $meal->id) }}"
+                                                class="btn btn-warning btn-block text-center" role="button">Add to
+                                                cart</a> </p>
+                                    </td>
+                                </tr>
+                            @else
                                 <tr>
                                     <th>Add to cart:</th>
                                     <td>

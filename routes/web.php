@@ -53,7 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
  */
 Route::middleware(['auth', 'chef'])->group(function () {
 
-    Route::get('/chef', [App\Http\Controllers\MealsController::class, 'create'])->name('chefDashboard');
+    Route::get('/chef', [App\Http\Controllers\MealsController::class, 'chefDashboard'])->name('chefDashboard');
     Route::post('/post', [App\Http\Controllers\MealsController::class, 'store'])->name('post.store');
     Route::delete('/post/{id}', [App\Http\Controllers\MealsController::class, 'delete'])->name('post.delete')->where('id', '[0-9]+');
     Route::get('/myorders', [App\Http\Controllers\MealsController::class, 'myorders'])->name('myorders');

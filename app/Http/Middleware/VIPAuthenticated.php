@@ -20,7 +20,7 @@ class VIPAuthenticated
         if (Auth::check()) {
             // if user is not VIP take him to The home page
             if (!Auth::user()->isVIP) {
-                return redirect(route('home'));
+                return redirect()->route('vipform')->with('warning', 'you are not a VIP user, Plz register');
             }
 
             // allow VIP to proceed with request
@@ -28,6 +28,6 @@ class VIPAuthenticated
                 return $next($request);
             }
         }
-        return $next($request);
+        return redirect()->route('login')->with('warning', 'you are not Loggedin, Plz login');;
     }
 }
