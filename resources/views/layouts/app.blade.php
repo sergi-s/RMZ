@@ -123,6 +123,7 @@
                                         <b style="font-size: 12px; color:black">{{ Auth::user()->name }}</b>
 
                                         @if (Auth::user()->avatar)
+                                            @if (Auth::user()->isVIP) <div class="ribbon"><span>VIP Member</span></div> @endif
                                             <img class="image rounded-circle"
                                                 src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}"
                                                 alt="profile_image"

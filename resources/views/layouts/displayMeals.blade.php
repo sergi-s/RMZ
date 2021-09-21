@@ -43,6 +43,10 @@
                         <h6>
                             Orderd <strong>{{ date('d-m-Y', strtotime($meal->updated_at)) }}</strong>
                         </h6>
+                    @else
+                    <h6>
+                        Posted <strong>{{ date('d-m-Y', strtotime($meal->updated_at)) }}</strong>
+                    </h6>
                     @endif
                 </div>
                 <div class="rate-box">

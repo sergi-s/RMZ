@@ -267,7 +267,7 @@
                 <div class="col-12">
                     <div class="heading">
                         <span>Meals</span>
-                        <h2><a href="/meals">Explore More of or Chefs</a></h2>
+                        <h2><a href="/meals">Discover More Best Meals</a></h2>
                         <p>
                             We have a great variety of the best popular
                             meals around the world that anyone could
@@ -293,7 +293,7 @@
                 <div class="col-12">
                     <div class="heading">
                         <span>Team</span>
-                        <h2><a href="/chefs">Explore More Chefs</a></h2>
+                        <h2><a href="/chefs">Discover More Best Chefs</a></h2>
                         <p> We have the best talented well-known chefs around the world gathered here to produce the best
                             tasted meals foreve as we believe that everyone deserves to taste good
                         </p>
